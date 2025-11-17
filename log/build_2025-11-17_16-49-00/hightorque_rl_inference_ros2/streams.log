@@ -1,0 +1,10 @@
+[0.021s] Invoking command in '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2': CMAKE_PREFIX_PATH=/opt/ros/foxy:${CMAKE_PREFIX_PATH} /usr/bin/cmake --build /home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2 -- -j8 -l8
+[0.291s] [ 50%] Built target hightorque_rl_inference_ros2_lib
+[0.458s] [ 75%] [32m[1mLinking CXX executable hightorque_rl_inference_ros2_node[0m
+[1.639s] /usr/bin/ld: libhightorque_rl_inference_ros2_lib.a(hightorque_rl_inference_ros2.cpp.o): in function `hightorque_rl_inference_ros2::HighTorqueRLInference::HighTorqueRLInference()':
+[1.639s] hightorque_rl_inference_ros2.cpp:(.text+0xc98): undefined reference to `ament_index_cpp::get_package_share_directory(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'
+[1.640s] collect2: error: ld returned 1 exit status
+[1.644s] make[2]: *** [CMakeFiles/hightorque_rl_inference_ros2_node.dir/build.make:143: hightorque_rl_inference_ros2_node] Error 1
+[1.645s] make[1]: *** [CMakeFiles/Makefile2:80: CMakeFiles/hightorque_rl_inference_ros2_node.dir/all] Error 2
+[1.645s] make: *** [Makefile:141: all] Error 2
+[1.653s] Invoked command in '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2' returned '2': CMAKE_PREFIX_PATH=/opt/ros/foxy:${CMAKE_PREFIX_PATH} /usr/bin/cmake --build /home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2 -- -j8 -l8

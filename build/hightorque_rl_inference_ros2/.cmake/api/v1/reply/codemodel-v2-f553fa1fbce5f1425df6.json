@@ -1,0 +1,87 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "hightorque_rl_inference_ros2",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "hightorque_rl_inference_ros2_lib::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-hightorque_rl_inference_ros2_lib-dcc4f12e3656e8dcafa9.json",
+					"name" : "hightorque_rl_inference_ros2_lib",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "hightorque_rl_inference_ros2_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-hightorque_rl_inference_ros2_node-6473ccf391d84522ee12.json",
+					"name" : "hightorque_rl_inference_ros2_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "hightorque_rl_inference_ros2_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-hightorque_rl_inference_ros2_uninstall-755228e7ed10271bc82a.json",
+					"name" : "hightorque_rl_inference_ros2_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-05e5ab9587bc4dcb053e.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2",
+		"source" : "/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

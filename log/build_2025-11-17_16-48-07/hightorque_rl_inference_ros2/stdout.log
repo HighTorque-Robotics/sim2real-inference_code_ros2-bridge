@@ -1,0 +1,5 @@
+[35m[1mScanning dependencies of target hightorque_rl_inference_ros2_lib[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/hightorque_rl_inference_ros2_lib.dir/src/hightorque_rl_inference_ros2.cpp.o[0m
+[ 50%] [32m[1mLinking CXX static library libhightorque_rl_inference_ros2_lib.a[0m
+[ 50%] Built target hightorque_rl_inference_ros2_lib
+[ 75%] [32m[1mLinking CXX executable hightorque_rl_inference_ros2_node[0m

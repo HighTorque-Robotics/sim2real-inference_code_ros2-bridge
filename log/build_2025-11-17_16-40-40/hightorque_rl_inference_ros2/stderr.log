@@ -1,0 +1,47 @@
+/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function ‘void hightorque_rl_inference_ros2::HighTorqueRLInference::updateObservation()’:
+/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:403:33: error: ‘clamp’ is not a member of ‘std’
+  403 |         observations_[i] = std::clamp(observations_[i], -clipObs_, clipObs_);
+      |                                 ^~~~~
+/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function ‘void hightorque_rl_inference_ros2::HighTorqueRLInference::updateAction()’:
+/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:422:26: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘Eigen::EigenBase<Eigen::Matrix<double, -1, -1> >::Index’ {aka ‘long int’} [-Wsign-compare]
+  422 |     for (size_t i = 0; i < obsInput_.size(); ++i)
+      |                        ~~^~~~~~~~~~~~~~~~~~
+/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:435:27: error: ‘clamp’ is not a member of ‘std’
+  435 |         action_[i] = std::clamp(outputData[i], clipActionsLower_[i], clipActionsUpper_[i]);
+      |                           ^~~~~
+/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function ‘void hightorque_rl_inference_ros2::HighTorqueRLInference::quat2euler()’:
+/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:456:22: error: ‘clamp’ is not a member of ‘std’
+  456 |     double t2 = std::clamp(2.0 * (w * y - z * x), -1.0, 1.0);
+      |                      ^~~~~
+/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function ‘void hightorque_rl_inference_ros2::HighTorqueRLInference::cmdVelCallback(geometry_msgs::msg::Twist_<std::allocator<void> >::SharedPtr)’:
+/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:533:24: error: ‘clamp’ is not a member of ‘std’
+  533 |     command_[0] = std::clamp(msg->linear.x, -0.55, 0.55);
+      |                        ^~~~~
+/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:534:24: error: ‘clamp’ is not a member of ‘std’
+  534 |     command_[1] = std::clamp(msg->linear.y, -0.3, 0.3);
+      |                        ^~~~~
+/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:535:24: error: ‘clamp’ is not a member of ‘std’
+  535 |     command_[2] = std::clamp(msg->angular.z, -2.0, 2.0);
+      |                        ^~~~~
+/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function ‘void hightorque_rl_inference_ros2::HighTorqueRLInference::run()’:
+/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:595:52: error: invalid initialization of reference of type ‘const nanoseconds&’ {aka ‘const std::chrono::duration<long int, std::ratio<1, 1000000000> >&’} from expression of type ‘std::chrono::duration<double>’
+  595 |                     rclcpp::sleep_for(std::chrono::duration<double>(reset_duration));
+      |                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /opt/ros/foxy/include/rclcpp/client.hpp:36,
+                 from /opt/ros/foxy/include/rclcpp/callback_group.hpp:23,
+                 from /opt/ros/foxy/include/rclcpp/any_executable.hpp:20,
+                 from /opt/ros/foxy/include/rclcpp/memory_strategy.hpp:24,
+                 from /opt/ros/foxy/include/rclcpp/memory_strategies.hpp:18,
+                 from /opt/ros/foxy/include/rclcpp/executor_options.hpp:20,
+                 from /opt/ros/foxy/include/rclcpp/executor.hpp:33,
+                 from /opt/ros/foxy/include/rclcpp/executors/multi_threaded_executor.hpp:26,
+                 from /opt/ros/foxy/include/rclcpp/executors.hpp:21,
+                 from /opt/ros/foxy/include/rclcpp/rclcpp.hpp:146,
+                 from /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/include/hightorque_rl_inference_ros2/hightorque_rl_inference_ros2.hpp:4,
+                 from /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:14:
+/opt/ros/foxy/include/rclcpp/utilities.hpp:216:36: note: in passing argument 1 of ‘bool rclcpp::sleep_for(const nanoseconds&, rclcpp::Context::SharedPtr)’
+  216 |   const std::chrono::nanoseconds & nanoseconds,
+      |   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+make[2]: *** [CMakeFiles/hightorque_rl_inference_ros2_lib.dir/build.make:63: CMakeFiles/hightorque_rl_inference_ros2_lib.dir/src/hightorque_rl_inference_ros2.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:107: CMakeFiles/hightorque_rl_inference_ros2_lib.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

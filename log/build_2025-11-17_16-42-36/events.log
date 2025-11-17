@@ -1,0 +1,368 @@
+[0.000000] (-) TimerEvent: {}
+[0.000151] (hightorque_rl_inference_ros2) JobQueued: {'identifier': 'hightorque_rl_inference_ros2', 'dependencies': OrderedDict()}
+[0.000893] (hightorque_rl_inference_ros2) JobStarted: {'identifier': 'hightorque_rl_inference_ros2'}
+[0.022474] (hightorque_rl_inference_ros2) JobProgress: {'identifier': 'hightorque_rl_inference_ros2', 'progress': 'cmake'}
+[0.023580] (hightorque_rl_inference_ros2) JobProgress: {'identifier': 'hightorque_rl_inference_ros2', 'progress': 'build'}
+[0.024707] (hightorque_rl_inference_ros2) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2', '--', '-j8', '-l8'], 'cwd': '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/hightorque'), ('UMS_MOUNTPOINT', '/mnt/ums'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('USER', 'hightorque'), ('SSH_CLIENT', '192.168.110.35 39922 22'), ('LC_TIME', 'C.UTF-8'), ('VSCODE_NLS_CONFIG', '{"userLocale":"zh-cn","osLocale":"zh-cn","resolvedLanguage":"zh-cn","defaultMessagesFile":"/home/hightorque/.cursor-server/cli/servers/Stable-ba90f2f88e4911312761abab9492c42442117cf0/server/out/nls.messages.json","languagePack":{"translationsConfigFile":"/home/hightorque/.cursor-server/data/clp/543be832562d740175c7183ffd05e5eb.zh-cn/tcf.json","messagesFile":"/home/hightorque/.cursor-server/data/clp/543be832562d740175c7183ffd05e5eb.zh-cn/ba90f2f88e4911312761abab9492c42442117cf0/nls.messages.json","corruptMarkerFile":"/home/hightorque/.cursor-server/data/clp/543be832562d740175c7183ffd05e5eb.zh-cn/corrupted.info"},"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"543be832562d740175c7183ffd05e5eb.zh-cn","_languagePackSupport":true,"_translationsConfigFile":"/home/hightorque/.cursor-server/data/clp/543be832562d740175c7183ffd05e5eb.zh-cn/tcf.json","_cacheRoot":"/home/hightorque/.cursor-server/data/clp/543be832562d740175c7183ffd05e5eb.zh-cn","_resolvedLanguagePackCoreLocation":"/home/hightorque/.cursor-server/data/clp/543be832562d740175c7183ffd05e5eb.zh-cn/ba90f2f88e4911312761abab9492c42442117cf0","_corruptedFile":"/home/hightorque/.cursor-server/data/clp/543be832562d740175c7183ffd05e5eb.zh-cn/corrupted.info"}'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('ROS_PACKAGE_PATH', '/opt/ros/noetic/share'), ('XDG_SESSION_TYPE', 'tty'), ('ROS_ETC_DIR', '/opt/ros/noetic/etc/ros'), ('SHLVL', '2'), ('USB_FUNCS', 'rndis'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/usr/local/lib:/opt/ros/noetic/lib:/opt/ros/noetic/lib/aarch64-linux-gnu:/usr/local/lib'), ('BROWSER', '/home/hightorque/.cursor-server/cli/servers/Stable-ba90f2f88e4911312761abab9492c42442117cf0/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/hightorque'), ('OLDPWD', '/home/hightorque/zy_workspace/hightorque_rl_ros2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-de77f6ba-9655-424e-a5ad-d4df4df7e37d.sock'), ('ROS_PYTHON_VERSION', '3'), ('COGL_DRIVER', 'gles2'), ('LC_MONETARY', 'C.UTF-8'), ('ROS_IP', '127.0.0.1'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('QTWEBENGINE_CHROMIUM_FLAGS', '--no-sandbox --disable-es3-gl-context --ignore-gpu-blacklist --ignore-gpu-blocklist --enable-accelerated-video-decode'), ('VSCODE_L10N_BUNDLE_LOCATION', 'vscode-local:/home/pi/.cursor/extensions/ms-ceintl.vscode-language-pack-zh-hans-1.99.0-universal/translations/extensions/vscode.markdown-language-features.i18n.json'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'hightorque'), ('FORCE_COLOR', '0'), ('VSCODE_HANDLES_SIGPIPE', 'true'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/opt/ros/noetic/lib/pkgconfig:/opt/ros/noetic/lib/aarch64-linux-gnu/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'dumb'), ('GST_GL_API', 'gles2'), ('XDG_SESSION_ID', 'c1'), ('VSCODE_CLI_REQUIRE_TOKEN', 'c6fa3e47-691f-4837-8516-9d9c8f65910c'), ('ROS_LOCALHOST_ONLY', '0'), ('COMPOSER_NO_INTERACTION', '1'), ('XSERVER_FREEZE_DISPLAY', '/tmp/.freeze_xserver'), ('PATH', '/opt/ros/foxy/bin:/home/hightorque/.local/bin:/opt/ros/noetic/bin:/home/hightorque/.cursor-server/cli/servers/Stable-ba90f2f88e4911312761abab9492c42442117cf0/server/bin/remote-cli:/home/hightorque/.local/bin:/home/hightorque/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('VSCODE_AGENT_FOLDER', '/home/hightorque/.cursor-server'), ('PAPERSIZE', 'a4'), ('LC_ADDRESS', 'C.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GST_GL_PLATFORM', 'egl'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('CURSOR_AGENT', '1'), ('ADBD_SHELL', '/bin/bash'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('LC_TELEPHONE', 'C.UTF-8'), ('ROSLISP_PACKAGE_DIRECTORIES', ''), ('LS_COLORS', ''), ('ROS_ROOT', '/opt/ros/noetic/share/ros'), ('UMS_SIZE', '256M'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'C.UTF-8'), ('UMS_RO', '0'), ('ROS_MASTER_URI', 'http://127.0.0.1:11311'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('UMS_FSTYPE', 'vfat'), ('LC_MEASUREMENT', 'C.UTF-8'), ('LC_IDENTIFICATION', 'C.UTF-8'), ('PWD', '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2'), ('SSH_CONNECTION', '192.168.110.35 39922 192.168.110.15 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ADB_TCP_PORT', '5555'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages:/opt/ros/noetic/lib/python3/dist-packages'), ('LC_NUMERIC', 'C.UTF-8'), ('UMS_MOUNT', '0'), ('LC_PAPER', 'C.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy:/opt/ros/noetic'), ('UMS_FILE', '/ums_shared.img')]), 'shell': False}
+[0.099536] (-) TimerEvent: {}
+[0.160474] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Detected architecture: aarch64\n'}
+[0.161931] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- ARM platform detected, enabling RKNN support\n'}
+[0.162535] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found RKNN library: /usr/lib/librknnrt.so\n'}
+[0.163023] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.199736] (-) TimerEvent: {}
+[0.234632] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.300064] (-) TimerEvent: {}
+[0.400692] (-) TimerEvent: {}
+[0.501379] (-) TimerEvent: {}
+[0.602046] (-) TimerEvent: {}
+[0.624380] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)\n'}
+[0.667706] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.671818] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[0.702321] (-) TimerEvent: {}
+[0.803035] (-) TimerEvent: {}
+[0.855867] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.903352] (-) TimerEvent: {}
+[0.920669] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[0.922172] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[1.003673] (-) TimerEvent: {}
+[1.104214] (-) TimerEvent: {}
+[1.124470] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)\n'}
+[1.204556] (-) TimerEvent: {}
+[1.290084] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found eigen3_cmake_module: 0.1.1 (/opt/ros/foxy/share/eigen3_cmake_module/cmake)\n'}
+[1.293579] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Using local RKNN headers: /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/include/rknn\n'}
+[1.294823] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Using local RKNN library: /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/lib/librknnrt.so\n'}
+[1.297600] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[1.304775] (-) TimerEvent: {}
+[1.405212] (-) TimerEvent: {}
+[1.501593] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[1.505373] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[1.506159] (-) TimerEvent: {}
+[1.507405] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Configured cppcheck include dirs: /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/include;/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/include/rknn\n'}
+[1.508304] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[1.510646] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[1.511289] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[1.512387] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[1.513449] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[1.514446] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the style conventions in PEP 257\n"}
+[1.517598] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[1.518120] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[1.518793] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[1.525526] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.558568] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Generating done\n'}
+[1.571875] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Build files have been written to: /home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2\n'}
+[1.606415] (-) TimerEvent: {}
+[1.706964] (-) TimerEvent: {}
+[1.807655] (-) TimerEvent: {}
+[1.819205] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'Scanning dependencies of target hightorque_rl_inference_ros2_lib\n'}
+[1.887517] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'[ 25%] Building CXX object CMakeFiles/hightorque_rl_inference_ros2_lib.dir/src/hightorque_rl_inference_ros2.cpp.o\n'}
+[1.908010] (-) TimerEvent: {}
+[2.008708] (-) TimerEvent: {}
+[2.109359] (-) TimerEvent: {}
+[2.210102] (-) TimerEvent: {}
+[2.311130] (-) TimerEvent: {}
+[2.412089] (-) TimerEvent: {}
+[2.512803] (-) TimerEvent: {}
+[2.613679] (-) TimerEvent: {}
+[2.714677] (-) TimerEvent: {}
+[2.815494] (-) TimerEvent: {}
+[2.916368] (-) TimerEvent: {}
+[3.017118] (-) TimerEvent: {}
+[3.117870] (-) TimerEvent: {}
+[3.218534] (-) TimerEvent: {}
+[3.319262] (-) TimerEvent: {}
+[3.419965] (-) TimerEvent: {}
+[3.520781] (-) TimerEvent: {}
+[3.621497] (-) TimerEvent: {}
+[3.722109] (-) TimerEvent: {}
+[3.822901] (-) TimerEvent: {}
+[3.923777] (-) TimerEvent: {}
+[4.024659] (-) TimerEvent: {}
+[4.125412] (-) TimerEvent: {}
+[4.226197] (-) TimerEvent: {}
+[4.326935] (-) TimerEvent: {}
+[4.427753] (-) TimerEvent: {}
+[4.528608] (-) TimerEvent: {}
+[4.629415] (-) TimerEvent: {}
+[4.730163] (-) TimerEvent: {}
+[4.830861] (-) TimerEvent: {}
+[4.931520] (-) TimerEvent: {}
+[5.032173] (-) TimerEvent: {}
+[5.132924] (-) TimerEvent: {}
+[5.233463] (-) TimerEvent: {}
+[5.334172] (-) TimerEvent: {}
+[5.434916] (-) TimerEvent: {}
+[5.535638] (-) TimerEvent: {}
+[5.636414] (-) TimerEvent: {}
+[5.737151] (-) TimerEvent: {}
+[5.837885] (-) TimerEvent: {}
+[5.938647] (-) TimerEvent: {}
+[6.039369] (-) TimerEvent: {}
+[6.140112] (-) TimerEvent: {}
+[6.240779] (-) TimerEvent: {}
+[6.341456] (-) TimerEvent: {}
+[6.442170] (-) TimerEvent: {}
+[6.543072] (-) TimerEvent: {}
+[6.643887] (-) TimerEvent: {}
+[6.744613] (-) TimerEvent: {}
+[6.845368] (-) TimerEvent: {}
+[6.946064] (-) TimerEvent: {}
+[7.028055] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function \xe2\x80\x98void hightorque_rl_inference_ros2::HighTorqueRLInference::updateAction()\xe2\x80\x99:\n'}
+[7.029293] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:423:26: warning: comparison of integer expressions of different signedness: \xe2\x80\x98size_t\xe2\x80\x99 {aka \xe2\x80\x98long unsigned int\xe2\x80\x99} and \xe2\x80\x98Eigen::EigenBase<Eigen::Matrix<double, -1, -1> >::Index\xe2\x80\x99 {aka \xe2\x80\x98long int\xe2\x80\x99} [-Wsign-compare]\n'}
+[7.029829] (hightorque_rl_inference_ros2) StderrLine: {'line': b'  423 |     for (size_t i = 0; i < obsInput_.size(); ++i)\n'}
+[7.030204] (hightorque_rl_inference_ros2) StderrLine: {'line': b'      |                        ~~^~~~~~~~~~~~~~~~~~\n'}
+[7.046416] (-) TimerEvent: {}
+[7.147225] (-) TimerEvent: {}
+[7.247816] (-) TimerEvent: {}
+[7.348158] (-) TimerEvent: {}
+[7.448477] (-) TimerEvent: {}
+[7.548805] (-) TimerEvent: {}
+[7.649122] (-) TimerEvent: {}
+[7.749456] (-) TimerEvent: {}
+[7.849807] (-) TimerEvent: {}
+[7.950193] (-) TimerEvent: {}
+[8.050576] (-) TimerEvent: {}
+[8.150908] (-) TimerEvent: {}
+[8.251329] (-) TimerEvent: {}
+[8.351802] (-) TimerEvent: {}
+[8.452254] (-) TimerEvent: {}
+[8.552891] (-) TimerEvent: {}
+[8.653551] (-) TimerEvent: {}
+[8.754228] (-) TimerEvent: {}
+[8.854799] (-) TimerEvent: {}
+[8.955489] (-) TimerEvent: {}
+[9.056130] (-) TimerEvent: {}
+[9.156638] (-) TimerEvent: {}
+[9.257224] (-) TimerEvent: {}
+[9.357923] (-) TimerEvent: {}
+[9.458576] (-) TimerEvent: {}
+[9.559267] (-) TimerEvent: {}
+[9.660108] (-) TimerEvent: {}
+[9.760891] (-) TimerEvent: {}
+[9.861586] (-) TimerEvent: {}
+[9.962264] (-) TimerEvent: {}
+[10.063309] (-) TimerEvent: {}
+[10.163997] (-) TimerEvent: {}
+[10.264893] (-) TimerEvent: {}
+[10.365637] (-) TimerEvent: {}
+[10.466472] (-) TimerEvent: {}
+[10.567389] (-) TimerEvent: {}
+[10.668295] (-) TimerEvent: {}
+[10.769218] (-) TimerEvent: {}
+[10.870300] (-) TimerEvent: {}
+[10.971284] (-) TimerEvent: {}
+[11.072052] (-) TimerEvent: {}
+[11.172809] (-) TimerEvent: {}
+[11.273460] (-) TimerEvent: {}
+[11.374096] (-) TimerEvent: {}
+[11.474730] (-) TimerEvent: {}
+[11.575460] (-) TimerEvent: {}
+[11.676207] (-) TimerEvent: {}
+[11.776882] (-) TimerEvent: {}
+[11.877652] (-) TimerEvent: {}
+[11.978370] (-) TimerEvent: {}
+[12.079102] (-) TimerEvent: {}
+[12.179764] (-) TimerEvent: {}
+[12.280544] (-) TimerEvent: {}
+[12.381305] (-) TimerEvent: {}
+[12.481974] (-) TimerEvent: {}
+[12.582617] (-) TimerEvent: {}
+[12.683320] (-) TimerEvent: {}
+[12.784261] (-) TimerEvent: {}
+[12.884956] (-) TimerEvent: {}
+[12.985440] (-) TimerEvent: {}
+[13.085940] (-) TimerEvent: {}
+[13.186352] (-) TimerEvent: {}
+[13.286700] (-) TimerEvent: {}
+[13.387024] (-) TimerEvent: {}
+[13.487384] (-) TimerEvent: {}
+[13.587764] (-) TimerEvent: {}
+[13.688267] (-) TimerEvent: {}
+[13.788926] (-) TimerEvent: {}
+[13.889656] (-) TimerEvent: {}
+[13.990422] (-) TimerEvent: {}
+[14.091247] (-) TimerEvent: {}
+[14.191986] (-) TimerEvent: {}
+[14.292725] (-) TimerEvent: {}
+[14.393440] (-) TimerEvent: {}
+[14.494247] (-) TimerEvent: {}
+[14.595114] (-) TimerEvent: {}
+[14.695927] (-) TimerEvent: {}
+[14.796665] (-) TimerEvent: {}
+[14.897412] (-) TimerEvent: {}
+[14.998188] (-) TimerEvent: {}
+[15.098992] (-) TimerEvent: {}
+[15.199719] (-) TimerEvent: {}
+[15.300345] (-) TimerEvent: {}
+[15.401084] (-) TimerEvent: {}
+[15.501742] (-) TimerEvent: {}
+[15.602270] (-) TimerEvent: {}
+[15.703004] (-) TimerEvent: {}
+[15.803765] (-) TimerEvent: {}
+[15.904486] (-) TimerEvent: {}
+[16.005172] (-) TimerEvent: {}
+[16.105812] (-) TimerEvent: {}
+[16.206439] (-) TimerEvent: {}
+[16.307164] (-) TimerEvent: {}
+[16.407914] (-) TimerEvent: {}
+[16.508669] (-) TimerEvent: {}
+[16.609402] (-) TimerEvent: {}
+[16.709917] (-) TimerEvent: {}
+[16.810578] (-) TimerEvent: {}
+[16.911334] (-) TimerEvent: {}
+[17.012029] (-) TimerEvent: {}
+[17.112772] (-) TimerEvent: {}
+[17.213529] (-) TimerEvent: {}
+[17.314280] (-) TimerEvent: {}
+[17.414981] (-) TimerEvent: {}
+[17.515668] (-) TimerEvent: {}
+[17.616381] (-) TimerEvent: {}
+[17.717047] (-) TimerEvent: {}
+[17.817710] (-) TimerEvent: {}
+[17.918383] (-) TimerEvent: {}
+[18.019166] (-) TimerEvent: {}
+[18.120238] (-) TimerEvent: {}
+[18.221163] (-) TimerEvent: {}
+[18.321874] (-) TimerEvent: {}
+[18.422637] (-) TimerEvent: {}
+[18.523376] (-) TimerEvent: {}
+[18.624074] (-) TimerEvent: {}
+[18.724799] (-) TimerEvent: {}
+[18.825395] (-) TimerEvent: {}
+[18.926104] (-) TimerEvent: {}
+[19.026808] (-) TimerEvent: {}
+[19.127449] (-) TimerEvent: {}
+[19.227983] (-) TimerEvent: {}
+[19.328564] (-) TimerEvent: {}
+[19.429269] (-) TimerEvent: {}
+[19.529957] (-) TimerEvent: {}
+[19.630657] (-) TimerEvent: {}
+[19.731257] (-) TimerEvent: {}
+[19.831648] (-) TimerEvent: {}
+[19.932137] (-) TimerEvent: {}
+[20.032795] (-) TimerEvent: {}
+[20.133431] (-) TimerEvent: {}
+[20.234074] (-) TimerEvent: {}
+[20.334733] (-) TimerEvent: {}
+[20.435344] (-) TimerEvent: {}
+[20.535963] (-) TimerEvent: {}
+[20.636721] (-) TimerEvent: {}
+[20.737438] (-) TimerEvent: {}
+[20.838165] (-) TimerEvent: {}
+[20.938920] (-) TimerEvent: {}
+[21.039731] (-) TimerEvent: {}
+[21.140484] (-) TimerEvent: {}
+[21.241243] (-) TimerEvent: {}
+[21.341928] (-) TimerEvent: {}
+[21.442553] (-) TimerEvent: {}
+[21.543277] (-) TimerEvent: {}
+[21.643998] (-) TimerEvent: {}
+[21.744861] (-) TimerEvent: {}
+[21.845641] (-) TimerEvent: {}
+[21.946246] (-) TimerEvent: {}
+[22.046941] (-) TimerEvent: {}
+[22.147624] (-) TimerEvent: {}
+[22.248321] (-) TimerEvent: {}
+[22.349091] (-) TimerEvent: {}
+[22.449811] (-) TimerEvent: {}
+[22.550521] (-) TimerEvent: {}
+[22.651247] (-) TimerEvent: {}
+[22.751900] (-) TimerEvent: {}
+[22.852479] (-) TimerEvent: {}
+[22.953145] (-) TimerEvent: {}
+[23.053928] (-) TimerEvent: {}
+[23.154554] (-) TimerEvent: {}
+[23.255147] (-) TimerEvent: {}
+[23.355763] (-) TimerEvent: {}
+[23.456230] (-) TimerEvent: {}
+[23.545589] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'[ 50%] Linking CXX static library libhightorque_rl_inference_ros2_lib.a\n'}
+[23.556530] (-) TimerEvent: {}
+[23.657155] (-) TimerEvent: {}
+[23.757896] (-) TimerEvent: {}
+[23.858526] (-) TimerEvent: {}
+[23.959078] (-) TimerEvent: {}
+[24.059816] (-) TimerEvent: {}
+[24.118644] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'[ 50%] Built target hightorque_rl_inference_ros2_lib\n'}
+[24.160098] (-) TimerEvent: {}
+[24.223821] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'Scanning dependencies of target hightorque_rl_inference_ros2_node\n'}
+[24.260493] (-) TimerEvent: {}
+[24.289553] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'[ 75%] Building CXX object CMakeFiles/hightorque_rl_inference_ros2_node.dir/src/main.cpp.o\n'}
+[24.360805] (-) TimerEvent: {}
+[24.461688] (-) TimerEvent: {}
+[24.562574] (-) TimerEvent: {}
+[24.663372] (-) TimerEvent: {}
+[24.764056] (-) TimerEvent: {}
+[24.864614] (-) TimerEvent: {}
+[24.965099] (-) TimerEvent: {}
+[25.065720] (-) TimerEvent: {}
+[25.166128] (-) TimerEvent: {}
+[25.266496] (-) TimerEvent: {}
+[25.366852] (-) TimerEvent: {}
+[25.467181] (-) TimerEvent: {}
+[25.567483] (-) TimerEvent: {}
+[25.668041] (-) TimerEvent: {}
+[25.768677] (-) TimerEvent: {}
+[25.869362] (-) TimerEvent: {}
+[25.970086] (-) TimerEvent: {}
+[26.070885] (-) TimerEvent: {}
+[26.171638] (-) TimerEvent: {}
+[26.272336] (-) TimerEvent: {}
+[26.373114] (-) TimerEvent: {}
+[26.473878] (-) TimerEvent: {}
+[26.574578] (-) TimerEvent: {}
+[26.675221] (-) TimerEvent: {}
+[26.775935] (-) TimerEvent: {}
+[26.876607] (-) TimerEvent: {}
+[26.977253] (-) TimerEvent: {}
+[27.077973] (-) TimerEvent: {}
+[27.178746] (-) TimerEvent: {}
+[27.279567] (-) TimerEvent: {}
+[27.380438] (-) TimerEvent: {}
+[27.481198] (-) TimerEvent: {}
+[27.581917] (-) TimerEvent: {}
+[27.682634] (-) TimerEvent: {}
+[27.783401] (-) TimerEvent: {}
+[27.884233] (-) TimerEvent: {}
+[27.984993] (-) TimerEvent: {}
+[28.085728] (-) TimerEvent: {}
+[28.186412] (-) TimerEvent: {}
+[28.287178] (-) TimerEvent: {}
+[28.387936] (-) TimerEvent: {}
+[28.488572] (-) TimerEvent: {}
+[28.589334] (-) TimerEvent: {}
+[28.690352] (-) TimerEvent: {}
+[28.791329] (-) TimerEvent: {}
+[28.892141] (-) TimerEvent: {}
+[28.992920] (-) TimerEvent: {}
+[29.093641] (-) TimerEvent: {}
+[29.194349] (-) TimerEvent: {}
+[29.295011] (-) TimerEvent: {}
+[29.395574] (-) TimerEvent: {}
+[29.496229] (-) TimerEvent: {}
+[29.596886] (-) TimerEvent: {}
+[29.697567] (-) TimerEvent: {}
+[29.798372] (-) TimerEvent: {}
+[29.899079] (-) TimerEvent: {}
+[29.927571] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'[100%] Linking CXX executable hightorque_rl_inference_ros2_node\n'}
+[29.999407] (-) TimerEvent: {}
+[30.100225] (-) TimerEvent: {}
+[30.201161] (-) TimerEvent: {}
+[30.302044] (-) TimerEvent: {}
+[30.402951] (-) TimerEvent: {}
+[30.503789] (-) TimerEvent: {}
+[30.604311] (-) TimerEvent: {}
+[30.704841] (-) TimerEvent: {}
+[30.805546] (-) TimerEvent: {}
+[30.906357] (-) TimerEvent: {}
+[31.007261] (-) TimerEvent: {}
+[31.108035] (-) TimerEvent: {}
+[31.208619] (-) TimerEvent: {}
+[31.246712] (hightorque_rl_inference_ros2) StderrLine: {'line': b"/usr/bin/ld: libhightorque_rl_inference_ros2_lib.a(hightorque_rl_inference_ros2.cpp.o): in function `hightorque_rl_inference_ros2::HighTorqueRLInference::HighTorqueRLInference()':\n"}
+[31.247531] (hightorque_rl_inference_ros2) StderrLine: {'line': b"hightorque_rl_inference_ros2.cpp:(.text+0xc98): undefined reference to `ament_index_cpp::get_package_share_directory(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'\n"}
+[31.248055] (hightorque_rl_inference_ros2) StderrLine: {'line': b'collect2: error: ld returned 1 exit status\n'}
+[31.249713] (hightorque_rl_inference_ros2) StderrLine: {'line': b'make[2]: *** [CMakeFiles/hightorque_rl_inference_ros2_node.dir/build.make:144: hightorque_rl_inference_ros2_node] Error 1\n'}
+[31.250995] (hightorque_rl_inference_ros2) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:80: CMakeFiles/hightorque_rl_inference_ros2_node.dir/all] Error 2\n'}
+[31.251567] (hightorque_rl_inference_ros2) StderrLine: {'line': b'make: *** [Makefile:141: all] Error 2\n'}
+[31.255466] (hightorque_rl_inference_ros2) CommandEnded: {'returncode': 2}
+[31.303371] (hightorque_rl_inference_ros2) JobEnded: {'identifier': 'hightorque_rl_inference_ros2', 'rc': 2}
+[31.308816] (-) TimerEvent: {}
+[31.315680] (-) EventReactorShutdown: {}

@@ -1,0 +1,82 @@
+[0.032s] Invoking command in '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2': CMAKE_PREFIX_PATH=/opt/ros/foxy:${CMAKE_PREFIX_PATH} /usr/bin/cmake --build /home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2 -- -j8 -l8
+[0.149s] -- Detected architecture: aarch64
+[0.150s] -- ARM platform detected, enabling RKNN support
+[0.150s] -- Found RKNN library: /usr/lib/librknnrt.so
+[0.150s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.262s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.723s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.864s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.872s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[1.094s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.159s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[1.161s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.365s] -- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)
+[1.523s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/foxy/share/eigen3_cmake_module/cmake)
+[1.526s] -- Using local RKNN headers: /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/include/rknn
+[1.526s] -- Using local RKNN library: /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/lib/librknnrt.so
+[1.529s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[1.719s] -- Added test 'copyright' to check source files copyright and LICENSE
+[1.720s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.721s] -- Configured cppcheck include dirs: /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/include;/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/include/rknn
+[1.722s] -- Configured cppcheck exclude dirs and/or files: 
+[1.723s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[1.725s] -- Configured cpplint exclude dirs and/or files: 
+[1.725s] -- Added test 'flake8' to check Python code syntax and style conventions
+[1.725s] -- Added test 'lint_cmake' to check CMake code style
+[1.725s] -- Added test 'pep257' to check Python code against some of the style conventions in PEP 257
+[1.727s] -- Added test 'uncrustify' to check C / C++ code style
+[1.727s] -- Configured uncrustify additional arguments: 
+[1.727s] -- Added test 'xmllint' to check XML markup files
+[1.732s] -- Configuring done
+[1.755s] -- Generating done
+[1.763s] -- Build files have been written to: /home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2
+[1.894s] Scanning dependencies of target hightorque_rl_inference_ros2_lib
+[1.967s] [ 25%] Building CXX object CMakeFiles/hightorque_rl_inference_ros2_lib.dir/src/hightorque_rl_inference_ros2.cpp.o
+[6.389s] /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function ‘void hightorque_rl_inference_ros2::HighTorqueRLInference::updateObservation()’:
+[6.390s] /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:403:33: error: ‘clamp’ is not a member of ‘std’
+[6.391s]   403 |         observations_[i] = std::clamp(observations_[i], -clipObs_, clipObs_);
+[6.391s]       |                                 ^~~~~
+[6.426s] /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function ‘void hightorque_rl_inference_ros2::HighTorqueRLInference::updateAction()’:
+[6.427s] /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:422:26: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘Eigen::EigenBase<Eigen::Matrix<double, -1, -1> >::Index’ {aka ‘long int’} [-Wsign-compare]
+[6.427s]   422 |     for (size_t i = 0; i < obsInput_.size(); ++i)
+[6.428s]       |                        ~~^~~~~~~~~~~~~~~~~~
+[6.429s] /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:435:27: error: ‘clamp’ is not a member of ‘std’
+[6.429s]   435 |         action_[i] = std::clamp(outputData[i], clipActionsLower_[i], clipActionsUpper_[i]);
+[6.430s]       |                           ^~~~~
+[6.434s] /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function ‘void hightorque_rl_inference_ros2::HighTorqueRLInference::quat2euler()’:
+[6.435s] /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:456:22: error: ‘clamp’ is not a member of ‘std’
+[6.435s]   456 |     double t2 = std::clamp(2.0 * (w * y - z * x), -1.0, 1.0);
+[6.435s]       |                      ^~~~~
+[6.457s] /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function ‘void hightorque_rl_inference_ros2::HighTorqueRLInference::cmdVelCallback(geometry_msgs::msg::Twist_<std::allocator<void> >::SharedPtr)’:
+[6.458s] /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:533:24: error: ‘clamp’ is not a member of ‘std’
+[6.458s]   533 |     command_[0] = std::clamp(msg->linear.x, -0.55, 0.55);
+[6.458s]       |                        ^~~~~
+[6.459s] /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:534:24: error: ‘clamp’ is not a member of ‘std’
+[6.460s]   534 |     command_[1] = std::clamp(msg->linear.y, -0.3, 0.3);
+[6.460s]       |                        ^~~~~
+[6.462s] /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:535:24: error: ‘clamp’ is not a member of ‘std’
+[6.463s]   535 |     command_[2] = std::clamp(msg->angular.z, -2.0, 2.0);
+[6.463s]       |                        ^~~~~
+[6.488s] /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function ‘void hightorque_rl_inference_ros2::HighTorqueRLInference::run()’:
+[6.489s] /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:595:52: error: invalid initialization of reference of type ‘const nanoseconds&’ {aka ‘const std::chrono::duration<long int, std::ratio<1, 1000000000> >&’} from expression of type ‘std::chrono::duration<double>’
+[6.489s]   595 |                     rclcpp::sleep_for(std::chrono::duration<double>(reset_duration));
+[6.489s]       |                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[6.490s] In file included from /opt/ros/foxy/include/rclcpp/client.hpp:36,
+[6.490s]                  from /opt/ros/foxy/include/rclcpp/callback_group.hpp:23,
+[6.490s]                  from /opt/ros/foxy/include/rclcpp/any_executable.hpp:20,
+[6.491s]                  from /opt/ros/foxy/include/rclcpp/memory_strategy.hpp:24,
+[6.491s]                  from /opt/ros/foxy/include/rclcpp/memory_strategies.hpp:18,
+[6.492s]                  from /opt/ros/foxy/include/rclcpp/executor_options.hpp:20,
+[6.492s]                  from /opt/ros/foxy/include/rclcpp/executor.hpp:33,
+[6.492s]                  from /opt/ros/foxy/include/rclcpp/executors/multi_threaded_executor.hpp:26,
+[6.493s]                  from /opt/ros/foxy/include/rclcpp/executors.hpp:21,
+[6.493s]                  from /opt/ros/foxy/include/rclcpp/rclcpp.hpp:146,
+[6.493s]                  from /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/include/hightorque_rl_inference_ros2/hightorque_rl_inference_ros2.hpp:4,
+[6.494s]                  from /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:14:
+[6.494s] /opt/ros/foxy/include/rclcpp/utilities.hpp:216:36: note: in passing argument 1 of ‘bool rclcpp::sleep_for(const nanoseconds&, rclcpp::Context::SharedPtr)’
+[6.494s]   216 |   const std::chrono::nanoseconds & nanoseconds,
+[6.495s]       |   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+[12.991s] make[2]: *** [CMakeFiles/hightorque_rl_inference_ros2_lib.dir/build.make:63: CMakeFiles/hightorque_rl_inference_ros2_lib.dir/src/hightorque_rl_inference_ros2.cpp.o] Error 1
+[12.992s] make[1]: *** [CMakeFiles/Makefile2:107: CMakeFiles/hightorque_rl_inference_ros2_lib.dir/all] Error 2
+[12.992s] make: *** [Makefile:141: all] Error 2
+[12.996s] Invoked command in '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2' returned '2': CMAKE_PREFIX_PATH=/opt/ros/foxy:${CMAKE_PREFIX_PATH} /usr/bin/cmake --build /home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2 -- -j8 -l8

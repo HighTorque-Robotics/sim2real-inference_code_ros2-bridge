@@ -1,0 +1,11 @@
+[0.026s] Invoking command in '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2': CMAKE_PREFIX_PATH=/opt/ros/foxy:${CMAKE_PREFIX_PATH} /usr/bin/cmake --build /home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2 -- -j8 -l8
+[0.254s] [ 25%] [32mBuilding CXX object CMakeFiles/hightorque_rl_inference_ros2_lib.dir/src/hightorque_rl_inference_ros2.cpp.o[0m
+[0.657s] In file included from [01m[K/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:14[m[K:
+[0.658s] [01m[K/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/include/hightorque_rl_inference_ros2/hightorque_rl_inference_ros2.hpp:17:10:[m[K [01;31m[Kfatal error: [m[Krknn_api.h: No such file or directory
+[0.658s]    17 | #include [01;31m[K"rknn_api.h"[m[K
+[0.659s]       |          [01;31m[K^~~~~~~~~~~~[m[K
+[0.659s] compilation terminated.
+[0.665s] make[2]: *** [CMakeFiles/hightorque_rl_inference_ros2_lib.dir/build.make:63: CMakeFiles/hightorque_rl_inference_ros2_lib.dir/src/hightorque_rl_inference_ros2.cpp.o] Error 1
+[0.666s] make[1]: *** [CMakeFiles/Makefile2:107: CMakeFiles/hightorque_rl_inference_ros2_lib.dir/all] Error 2
+[0.667s] make: *** [Makefile:141: all] Error 2
+[0.679s] Invoked command in '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2' returned '2': CMAKE_PREFIX_PATH=/opt/ros/foxy:${CMAKE_PREFIX_PATH} /usr/bin/cmake --build /home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2 -- -j8 -l8

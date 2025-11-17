@@ -1,0 +1,10 @@
+/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function ‘void hightorque_rl_inference_ros2::HighTorqueRLInference::updateAction()’:
+/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:423:26: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘Eigen::EigenBase<Eigen::Matrix<double, -1, -1> >::Index’ {aka ‘long int’} [-Wsign-compare]
+  423 |     for (size_t i = 0; i < obsInput_.size(); ++i)
+      |                        ~~^~~~~~~~~~~~~~~~~~
+/usr/bin/ld: libhightorque_rl_inference_ros2_lib.a(hightorque_rl_inference_ros2.cpp.o): in function `hightorque_rl_inference_ros2::HighTorqueRLInference::HighTorqueRLInference()':
+hightorque_rl_inference_ros2.cpp:(.text+0xc98): undefined reference to `ament_index_cpp::get_package_share_directory(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'
+collect2: error: ld returned 1 exit status
+make[2]: *** [CMakeFiles/hightorque_rl_inference_ros2_node.dir/build.make:143: hightorque_rl_inference_ros2_node] Error 1
+make[1]: *** [CMakeFiles/Makefile2:80: CMakeFiles/hightorque_rl_inference_ros2_node.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

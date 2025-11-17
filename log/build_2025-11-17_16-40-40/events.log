@@ -1,0 +1,218 @@
+[0.000000] (-) TimerEvent: {}
+[0.000389] (hightorque_rl_inference_ros2) JobQueued: {'identifier': 'hightorque_rl_inference_ros2', 'dependencies': OrderedDict()}
+[0.000699] (hightorque_rl_inference_ros2) JobStarted: {'identifier': 'hightorque_rl_inference_ros2'}
+[0.022294] (hightorque_rl_inference_ros2) JobProgress: {'identifier': 'hightorque_rl_inference_ros2', 'progress': 'cmake'}
+[0.023556] (hightorque_rl_inference_ros2) JobProgress: {'identifier': 'hightorque_rl_inference_ros2', 'progress': 'build'}
+[0.025399] (hightorque_rl_inference_ros2) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2', '--', '-j8', '-l8'], 'cwd': '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/hightorque'), ('UMS_MOUNTPOINT', '/mnt/ums'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('USER', 'hightorque'), ('SSH_CLIENT', '192.168.110.35 39922 22'), ('LC_TIME', 'C.UTF-8'), ('VSCODE_NLS_CONFIG', '{"userLocale":"zh-cn","osLocale":"zh-cn","resolvedLanguage":"zh-cn","defaultMessagesFile":"/home/hightorque/.cursor-server/cli/servers/Stable-ba90f2f88e4911312761abab9492c42442117cf0/server/out/nls.messages.json","languagePack":{"translationsConfigFile":"/home/hightorque/.cursor-server/data/clp/543be832562d740175c7183ffd05e5eb.zh-cn/tcf.json","messagesFile":"/home/hightorque/.cursor-server/data/clp/543be832562d740175c7183ffd05e5eb.zh-cn/ba90f2f88e4911312761abab9492c42442117cf0/nls.messages.json","corruptMarkerFile":"/home/hightorque/.cursor-server/data/clp/543be832562d740175c7183ffd05e5eb.zh-cn/corrupted.info"},"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"543be832562d740175c7183ffd05e5eb.zh-cn","_languagePackSupport":true,"_translationsConfigFile":"/home/hightorque/.cursor-server/data/clp/543be832562d740175c7183ffd05e5eb.zh-cn/tcf.json","_cacheRoot":"/home/hightorque/.cursor-server/data/clp/543be832562d740175c7183ffd05e5eb.zh-cn","_resolvedLanguagePackCoreLocation":"/home/hightorque/.cursor-server/data/clp/543be832562d740175c7183ffd05e5eb.zh-cn/ba90f2f88e4911312761abab9492c42442117cf0","_corruptedFile":"/home/hightorque/.cursor-server/data/clp/543be832562d740175c7183ffd05e5eb.zh-cn/corrupted.info"}'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('ROS_PACKAGE_PATH', '/opt/ros/noetic/share'), ('XDG_SESSION_TYPE', 'tty'), ('ROS_ETC_DIR', '/opt/ros/noetic/etc/ros'), ('SHLVL', '2'), ('USB_FUNCS', 'rndis'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/usr/local/lib:/opt/ros/noetic/lib:/opt/ros/noetic/lib/aarch64-linux-gnu:/usr/local/lib'), ('BROWSER', '/home/hightorque/.cursor-server/cli/servers/Stable-ba90f2f88e4911312761abab9492c42442117cf0/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/hightorque'), ('OLDPWD', '/home/hightorque/zy_workspace'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-de77f6ba-9655-424e-a5ad-d4df4df7e37d.sock'), ('ROS_PYTHON_VERSION', '3'), ('COGL_DRIVER', 'gles2'), ('LC_MONETARY', 'C.UTF-8'), ('ROS_IP', '127.0.0.1'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('QTWEBENGINE_CHROMIUM_FLAGS', '--no-sandbox --disable-es3-gl-context --ignore-gpu-blacklist --ignore-gpu-blocklist --enable-accelerated-video-decode'), ('VSCODE_L10N_BUNDLE_LOCATION', 'vscode-local:/home/pi/.cursor/extensions/ms-ceintl.vscode-language-pack-zh-hans-1.99.0-universal/translations/extensions/vscode.markdown-language-features.i18n.json'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'hightorque'), ('FORCE_COLOR', '0'), ('VSCODE_HANDLES_SIGPIPE', 'true'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/opt/ros/noetic/lib/pkgconfig:/opt/ros/noetic/lib/aarch64-linux-gnu/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'dumb'), ('GST_GL_API', 'gles2'), ('XDG_SESSION_ID', 'c1'), ('VSCODE_CLI_REQUIRE_TOKEN', 'c6fa3e47-691f-4837-8516-9d9c8f65910c'), ('ROS_LOCALHOST_ONLY', '0'), ('COMPOSER_NO_INTERACTION', '1'), ('XSERVER_FREEZE_DISPLAY', '/tmp/.freeze_xserver'), ('PATH', '/opt/ros/foxy/bin:/home/hightorque/.local/bin:/opt/ros/noetic/bin:/home/hightorque/.cursor-server/cli/servers/Stable-ba90f2f88e4911312761abab9492c42442117cf0/server/bin/remote-cli:/home/hightorque/.local/bin:/home/hightorque/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('VSCODE_AGENT_FOLDER', '/home/hightorque/.cursor-server'), ('PAPERSIZE', 'a4'), ('LC_ADDRESS', 'C.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GST_GL_PLATFORM', 'egl'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('CURSOR_AGENT', '1'), ('ADBD_SHELL', '/bin/bash'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('LC_TELEPHONE', 'C.UTF-8'), ('ROSLISP_PACKAGE_DIRECTORIES', ''), ('LS_COLORS', ''), ('ROS_ROOT', '/opt/ros/noetic/share/ros'), ('UMS_SIZE', '256M'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'C.UTF-8'), ('UMS_RO', '0'), ('ROS_MASTER_URI', 'http://127.0.0.1:11311'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('UMS_FSTYPE', 'vfat'), ('LC_MEASUREMENT', 'C.UTF-8'), ('LC_IDENTIFICATION', 'C.UTF-8'), ('PWD', '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2'), ('SSH_CONNECTION', '192.168.110.35 39922 192.168.110.15 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('ADB_TCP_PORT', '5555'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages:/opt/ros/noetic/lib/python3/dist-packages'), ('LC_NUMERIC', 'C.UTF-8'), ('UMS_MOUNT', '0'), ('LC_PAPER', 'C.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy:/opt/ros/noetic'), ('UMS_FILE', '/ums_shared.img')]), 'shell': False}
+[0.098544] (-) TimerEvent: {}
+[0.149053] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Detected architecture: aarch64\n'}
+[0.150090] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- ARM platform detected, enabling RKNN support\n'}
+[0.150583] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found RKNN library: /usr/lib/librknnrt.so\n'}
+[0.150984] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.198738] (-) TimerEvent: {}
+[0.262224] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.299062] (-) TimerEvent: {}
+[0.399950] (-) TimerEvent: {}
+[0.500712] (-) TimerEvent: {}
+[0.601339] (-) TimerEvent: {}
+[0.701917] (-) TimerEvent: {}
+[0.723589] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)\n'}
+[0.802301] (-) TimerEvent: {}
+[0.863546] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.871763] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[0.902690] (-) TimerEvent: {}
+[1.003500] (-) TimerEvent: {}
+[1.093652] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.103791] (-) TimerEvent: {}
+[1.159117] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[1.160739] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[1.204192] (-) TimerEvent: {}
+[1.305039] (-) TimerEvent: {}
+[1.365138] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)\n'}
+[1.405367] (-) TimerEvent: {}
+[1.506093] (-) TimerEvent: {}
+[1.523485] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found eigen3_cmake_module: 0.1.1 (/opt/ros/foxy/share/eigen3_cmake_module/cmake)\n'}
+[1.526118] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Using local RKNN headers: /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/include/rknn\n'}
+[1.526835] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Using local RKNN library: /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/lib/librknnrt.so\n'}
+[1.529406] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[1.606288] (-) TimerEvent: {}
+[1.707043] (-) TimerEvent: {}
+[1.719071] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[1.720609] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[1.721690] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Configured cppcheck include dirs: /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/include;/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/include/rknn\n'}
+[1.722277] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[1.723340] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[1.724283] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[1.725349] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[1.725483] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[1.725589] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the style conventions in PEP 257\n"}
+[1.726778] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[1.727476] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[1.727615] (hightorque_rl_inference_ros2) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[1.732156] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.754834] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Generating done\n'}
+[1.763592] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'-- Build files have been written to: /home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2\n'}
+[1.807280] (-) TimerEvent: {}
+[1.894032] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'Scanning dependencies of target hightorque_rl_inference_ros2_lib\n'}
+[1.907545] (-) TimerEvent: {}
+[1.966257] (hightorque_rl_inference_ros2) StdoutLine: {'line': b'[ 25%] Building CXX object CMakeFiles/hightorque_rl_inference_ros2_lib.dir/src/hightorque_rl_inference_ros2.cpp.o\n'}
+[2.008271] (-) TimerEvent: {}
+[2.108927] (-) TimerEvent: {}
+[2.209524] (-) TimerEvent: {}
+[2.310177] (-) TimerEvent: {}
+[2.410982] (-) TimerEvent: {}
+[2.511896] (-) TimerEvent: {}
+[2.612613] (-) TimerEvent: {}
+[2.713361] (-) TimerEvent: {}
+[2.814137] (-) TimerEvent: {}
+[2.914931] (-) TimerEvent: {}
+[3.015623] (-) TimerEvent: {}
+[3.116352] (-) TimerEvent: {}
+[3.217309] (-) TimerEvent: {}
+[3.318140] (-) TimerEvent: {}
+[3.418812] (-) TimerEvent: {}
+[3.519525] (-) TimerEvent: {}
+[3.620284] (-) TimerEvent: {}
+[3.721055] (-) TimerEvent: {}
+[3.821807] (-) TimerEvent: {}
+[3.922442] (-) TimerEvent: {}
+[4.023046] (-) TimerEvent: {}
+[4.123422] (-) TimerEvent: {}
+[4.223750] (-) TimerEvent: {}
+[4.324182] (-) TimerEvent: {}
+[4.424551] (-) TimerEvent: {}
+[4.524900] (-) TimerEvent: {}
+[4.625388] (-) TimerEvent: {}
+[4.726073] (-) TimerEvent: {}
+[4.826707] (-) TimerEvent: {}
+[4.927407] (-) TimerEvent: {}
+[5.028110] (-) TimerEvent: {}
+[5.128861] (-) TimerEvent: {}
+[5.229543] (-) TimerEvent: {}
+[5.330027] (-) TimerEvent: {}
+[5.430639] (-) TimerEvent: {}
+[5.531362] (-) TimerEvent: {}
+[5.632148] (-) TimerEvent: {}
+[5.732812] (-) TimerEvent: {}
+[5.833518] (-) TimerEvent: {}
+[5.934279] (-) TimerEvent: {}
+[6.035226] (-) TimerEvent: {}
+[6.135995] (-) TimerEvent: {}
+[6.236945] (-) TimerEvent: {}
+[6.337606] (-) TimerEvent: {}
+[6.389370] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function \xe2\x80\x98void hightorque_rl_inference_ros2::HighTorqueRLInference::updateObservation()\xe2\x80\x99:\n'}
+[6.390560] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:403:33: error: \xe2\x80\x98clamp\xe2\x80\x99 is not a member of \xe2\x80\x98std\xe2\x80\x99\n'}
+[6.391089] (hightorque_rl_inference_ros2) StderrLine: {'line': b'  403 |         observations_[i] = std::clamp(observations_[i], -clipObs_, clipObs_);\n'}
+[6.391508] (hightorque_rl_inference_ros2) StderrLine: {'line': b'      |                                 ^~~~~\n'}
+[6.426151] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function \xe2\x80\x98void hightorque_rl_inference_ros2::HighTorqueRLInference::updateAction()\xe2\x80\x99:\n'}
+[6.427148] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:422:26: warning: comparison of integer expressions of different signedness: \xe2\x80\x98size_t\xe2\x80\x99 {aka \xe2\x80\x98long unsigned int\xe2\x80\x99} and \xe2\x80\x98Eigen::EigenBase<Eigen::Matrix<double, -1, -1> >::Index\xe2\x80\x99 {aka \xe2\x80\x98long int\xe2\x80\x99} [-Wsign-compare]\n'}
+[6.427822] (hightorque_rl_inference_ros2) StderrLine: {'line': b'  422 |     for (size_t i = 0; i < obsInput_.size(); ++i)\n'}
+[6.428345] (hightorque_rl_inference_ros2) StderrLine: {'line': b'      |                        ~~^~~~~~~~~~~~~~~~~~\n'}
+[6.429476] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:435:27: error: \xe2\x80\x98clamp\xe2\x80\x99 is not a member of \xe2\x80\x98std\xe2\x80\x99\n'}
+[6.429941] (hightorque_rl_inference_ros2) StderrLine: {'line': b'  435 |         action_[i] = std::clamp(outputData[i], clipActionsLower_[i], clipActionsUpper_[i]);\n'}
+[6.430345] (hightorque_rl_inference_ros2) StderrLine: {'line': b'      |                           ^~~~~\n'}
+[6.434073] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function \xe2\x80\x98void hightorque_rl_inference_ros2::HighTorqueRLInference::quat2euler()\xe2\x80\x99:\n'}
+[6.434994] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:456:22: error: \xe2\x80\x98clamp\xe2\x80\x99 is not a member of \xe2\x80\x98std\xe2\x80\x99\n'}
+[6.435534] (hightorque_rl_inference_ros2) StderrLine: {'line': b'  456 |     double t2 = std::clamp(2.0 * (w * y - z * x), -1.0, 1.0);\n'}
+[6.435947] (hightorque_rl_inference_ros2) StderrLine: {'line': b'      |                      ^~~~~\n'}
+[6.437687] (-) TimerEvent: {}
+[6.457040] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function \xe2\x80\x98void hightorque_rl_inference_ros2::HighTorqueRLInference::cmdVelCallback(geometry_msgs::msg::Twist_<std::allocator<void> >::SharedPtr)\xe2\x80\x99:\n'}
+[6.457924] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:533:24: error: \xe2\x80\x98clamp\xe2\x80\x99 is not a member of \xe2\x80\x98std\xe2\x80\x99\n'}
+[6.458475] (hightorque_rl_inference_ros2) StderrLine: {'line': b'  533 |     command_[0] = std::clamp(msg->linear.x, -0.55, 0.55);\n'}
+[6.458840] (hightorque_rl_inference_ros2) StderrLine: {'line': b'      |                        ^~~~~\n'}
+[6.459902] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:534:24: error: \xe2\x80\x98clamp\xe2\x80\x99 is not a member of \xe2\x80\x98std\xe2\x80\x99\n'}
+[6.460313] (hightorque_rl_inference_ros2) StderrLine: {'line': b'  534 |     command_[1] = std::clamp(msg->linear.y, -0.3, 0.3);\n'}
+[6.460666] (hightorque_rl_inference_ros2) StderrLine: {'line': b'      |                        ^~~~~\n'}
+[6.462724] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:535:24: error: \xe2\x80\x98clamp\xe2\x80\x99 is not a member of \xe2\x80\x98std\xe2\x80\x99\n'}
+[6.463137] (hightorque_rl_inference_ros2) StderrLine: {'line': b'  535 |     command_[2] = std::clamp(msg->angular.z, -2.0, 2.0);\n'}
+[6.463480] (hightorque_rl_inference_ros2) StderrLine: {'line': b'      |                        ^~~~~\n'}
+[6.487720] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp: In member function \xe2\x80\x98void hightorque_rl_inference_ros2::HighTorqueRLInference::run()\xe2\x80\x99:\n'}
+[6.488901] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:595:52: error: invalid initialization of reference of type \xe2\x80\x98const nanoseconds&\xe2\x80\x99 {aka \xe2\x80\x98const std::chrono::duration<long int, std::ratio<1, 1000000000> >&\xe2\x80\x99} from expression of type \xe2\x80\x98std::chrono::duration<double>\xe2\x80\x99\n'}
+[6.489510] (hightorque_rl_inference_ros2) StderrLine: {'line': b'  595 |                     rclcpp::sleep_for(std::chrono::duration<double>(reset_duration));\n'}
+[6.489942] (hightorque_rl_inference_ros2) StderrLine: {'line': b'      |                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'}
+[6.490298] (hightorque_rl_inference_ros2) StderrLine: {'line': b'In file included from /opt/ros/foxy/include/rclcpp/client.hpp:36,\n'}
+[6.490641] (hightorque_rl_inference_ros2) StderrLine: {'line': b'                 from /opt/ros/foxy/include/rclcpp/callback_group.hpp:23,\n'}
+[6.490986] (hightorque_rl_inference_ros2) StderrLine: {'line': b'                 from /opt/ros/foxy/include/rclcpp/any_executable.hpp:20,\n'}
+[6.491331] (hightorque_rl_inference_ros2) StderrLine: {'line': b'                 from /opt/ros/foxy/include/rclcpp/memory_strategy.hpp:24,\n'}
+[6.491781] (hightorque_rl_inference_ros2) StderrLine: {'line': b'                 from /opt/ros/foxy/include/rclcpp/memory_strategies.hpp:18,\n'}
+[6.492136] (hightorque_rl_inference_ros2) StderrLine: {'line': b'                 from /opt/ros/foxy/include/rclcpp/executor_options.hpp:20,\n'}
+[6.492482] (hightorque_rl_inference_ros2) StderrLine: {'line': b'                 from /opt/ros/foxy/include/rclcpp/executor.hpp:33,\n'}
+[6.492831] (hightorque_rl_inference_ros2) StderrLine: {'line': b'                 from /opt/ros/foxy/include/rclcpp/executors/multi_threaded_executor.hpp:26,\n'}
+[6.493176] (hightorque_rl_inference_ros2) StderrLine: {'line': b'                 from /opt/ros/foxy/include/rclcpp/executors.hpp:21,\n'}
+[6.493517] (hightorque_rl_inference_ros2) StderrLine: {'line': b'                 from /opt/ros/foxy/include/rclcpp/rclcpp.hpp:146,\n'}
+[6.493860] (hightorque_rl_inference_ros2) StderrLine: {'line': b'                 from /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/include/hightorque_rl_inference_ros2/hightorque_rl_inference_ros2.hpp:4,\n'}
+[6.494261] (hightorque_rl_inference_ros2) StderrLine: {'line': b'                 from /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/src/hightorque_rl_inference_ros2.cpp:14:\n'}
+[6.494608] (hightorque_rl_inference_ros2) StderrLine: {'line': b'/opt/ros/foxy/include/rclcpp/utilities.hpp:216:36: note: in passing argument 1 of \xe2\x80\x98bool rclcpp::sleep_for(const nanoseconds&, rclcpp::Context::SharedPtr)\xe2\x80\x99\n'}
+[6.494993] (hightorque_rl_inference_ros2) StderrLine: {'line': b'  216 |   const std::chrono::nanoseconds & nanoseconds,\n'}
+[6.495343] (hightorque_rl_inference_ros2) StderrLine: {'line': b'      |   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~\n'}
+[6.538311] (-) TimerEvent: {}
+[6.639100] (-) TimerEvent: {}
+[6.739574] (-) TimerEvent: {}
+[6.840258] (-) TimerEvent: {}
+[6.941049] (-) TimerEvent: {}
+[7.041810] (-) TimerEvent: {}
+[7.142496] (-) TimerEvent: {}
+[7.243234] (-) TimerEvent: {}
+[7.343962] (-) TimerEvent: {}
+[7.444646] (-) TimerEvent: {}
+[7.545217] (-) TimerEvent: {}
+[7.645818] (-) TimerEvent: {}
+[7.746281] (-) TimerEvent: {}
+[7.846710] (-) TimerEvent: {}
+[7.947084] (-) TimerEvent: {}
+[8.047457] (-) TimerEvent: {}
+[8.147822] (-) TimerEvent: {}
+[8.248182] (-) TimerEvent: {}
+[8.348573] (-) TimerEvent: {}
+[8.448965] (-) TimerEvent: {}
+[8.549575] (-) TimerEvent: {}
+[8.650359] (-) TimerEvent: {}
+[8.751104] (-) TimerEvent: {}
+[8.851814] (-) TimerEvent: {}
+[8.952466] (-) TimerEvent: {}
+[9.053132] (-) TimerEvent: {}
+[9.153774] (-) TimerEvent: {}
+[9.254662] (-) TimerEvent: {}
+[9.355467] (-) TimerEvent: {}
+[9.455991] (-) TimerEvent: {}
+[9.556696] (-) TimerEvent: {}
+[9.657527] (-) TimerEvent: {}
+[9.758339] (-) TimerEvent: {}
+[9.859097] (-) TimerEvent: {}
+[9.959847] (-) TimerEvent: {}
+[10.060567] (-) TimerEvent: {}
+[10.161247] (-) TimerEvent: {}
+[10.261712] (-) TimerEvent: {}
+[10.363351] (-) TimerEvent: {}
+[10.463773] (-) TimerEvent: {}
+[10.564110] (-) TimerEvent: {}
+[10.664413] (-) TimerEvent: {}
+[10.764795] (-) TimerEvent: {}
+[10.865209] (-) TimerEvent: {}
+[10.965599] (-) TimerEvent: {}
+[11.066195] (-) TimerEvent: {}
+[11.166894] (-) TimerEvent: {}
+[11.267595] (-) TimerEvent: {}
+[11.368320] (-) TimerEvent: {}
+[11.468933] (-) TimerEvent: {}
+[11.569468] (-) TimerEvent: {}
+[11.670078] (-) TimerEvent: {}
+[11.770596] (-) TimerEvent: {}
+[11.871056] (-) TimerEvent: {}
+[11.971758] (-) TimerEvent: {}
+[12.072508] (-) TimerEvent: {}
+[12.173152] (-) TimerEvent: {}
+[12.273855] (-) TimerEvent: {}
+[12.374652] (-) TimerEvent: {}
+[12.475432] (-) TimerEvent: {}
+[12.576085] (-) TimerEvent: {}
+[12.676817] (-) TimerEvent: {}
+[12.777484] (-) TimerEvent: {}
+[12.878281] (-) TimerEvent: {}
+[12.979024] (-) TimerEvent: {}
+[12.991120] (hightorque_rl_inference_ros2) StderrLine: {'line': b'make[2]: *** [CMakeFiles/hightorque_rl_inference_ros2_lib.dir/build.make:63: CMakeFiles/hightorque_rl_inference_ros2_lib.dir/src/hightorque_rl_inference_ros2.cpp.o] Error 1\n'}
+[12.992126] (hightorque_rl_inference_ros2) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:107: CMakeFiles/hightorque_rl_inference_ros2_lib.dir/all] Error 2\n'}
+[12.992703] (hightorque_rl_inference_ros2) StderrLine: {'line': b'make: *** [Makefile:141: all] Error 2\n'}
+[12.995510] (hightorque_rl_inference_ros2) CommandEnded: {'returncode': 2}
+[13.033425] (hightorque_rl_inference_ros2) JobEnded: {'identifier': 'hightorque_rl_inference_ros2', 'rc': 2}
+[13.043946] (-) EventReactorShutdown: {}

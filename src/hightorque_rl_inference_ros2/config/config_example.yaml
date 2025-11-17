@@ -1,0 +1,38 @@
+########################################   rl parameters   ########################################
+
+# 基本参数
+num_actions: 12
+num_single_obs: 36
+frame_stack: 1
+
+# 模型路径
+policy_name: "policy_0322_12dof_4000.rknn"
+
+# 控制频率 (dt * decimation = 0.001 * 10 = 100Hz)
+dt: 0.001
+decimation: 10
+
+# 步态周期参数
+frequency: 0.5
+
+# 观测值缩放参数
+cmd_lin_vel_scale: 1.0
+cmd_ang_vel_scale: 1.25
+rbt_lin_pos_scale: 1.0
+rbt_lin_vel_scale: 1.0
+rbt_ang_vel_scale: 1.0
+
+# 观测值裁剪
+clip_obs: 18.0
+
+# 动作限制
+clip_actions_lower: [-1.00, -0.40, -0.60, -1.30, -0.75, -0.30, -1.00, -0.40, -0.60, -1.30, -0.75, -0.30]
+clip_actions_upper: [1.00,  0.40,  0.60,  1.30,  0.75,  0.30,  1.00,  0.40,  0.60,  1.30,  0.75,  0.30]
+
+# 动作缩放
+action_scale: 1.0
+
+# 电机配置
+motor_direction: [1, 1, -1, -1, 1, 1, -1, 1, -1, 1, -1, 1]
+map_index: [5, 4, 3, 2, 1, 0, 11, 10, 9, 8, 7, 6]
+urdf_dof_pos_offset: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
