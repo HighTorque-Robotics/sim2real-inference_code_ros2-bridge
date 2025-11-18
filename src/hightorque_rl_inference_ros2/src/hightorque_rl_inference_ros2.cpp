@@ -273,28 +273,53 @@ HighTorqueRLInference::~HighTorqueRLInference()
 
 bool HighTorqueRLInference::init()
 {
-    // Create publishers
+    // Create publishers with QoS settings for real-time control
+    // 为实时控制创建具有 QoS 设置的发布者
+    auto qos = rclcpp::QoS(rclcpp::KeepLast(1000))
+        .reliable()  // 确保消息可靠传输
+        .durability_volatile();  // 不保存历史消息，降低延迟
+    
     std::string topicName = "/" + modelType_ + "_all";
-    jointCmdPub_ = this->create_publisher<sensor_msgs::msg::JointState>(topicName, 1000);
+    jointCmdPub_ = this->create_publisher<sensor_msgs::msg::JointState>(topicName, qos);
 
+    auto preset_qos = rclcpp::QoS(rclcpp::KeepLast(10))
+        .reliable()
+        .durability_volatile();
     std::string presetTopic = "/" + modelType_ + "_preset";
-    presetPub_ = this->create_publisher<sensor_msgs::msg::JointState>(presetTopic, 10);
+    presetPub_ = this->create_publisher<sensor_msgs::msg::JointState>(presetTopic, preset_qos);
 
-    // Create subscribers with increased queue size for high-frequency control (100Hz)
+    // Create subscribers with QoS settings for high-frequency control (100Hz)
+    // 为高频控制（100Hz）创建具有 QoS 设置的订阅者
+    // 注意：从 ROS1 桥接的话题需要使用兼容的 QoS 策略
+    
+    // 对于关节状态话题，使用 reliable + volatile
+    auto joint_qos = rclcpp::QoS(rclcpp::KeepLast(100))
+        .reliable()  // ROS1 bridge 默认使用 reliable
+        .durability_volatile();
+    
     robotStateSub_ = this->create_subscription<sensor_msgs::msg::JointState>(
-        "/sim2real_master_node/rbt_state", 100,
+        "/sim2real_master_node/rbt_state", joint_qos,
         std::bind(&HighTorqueRLInference::robotStateCallback, this, std::placeholders::_1));
 
     motorStateSub_ = this->create_subscription<sensor_msgs::msg::JointState>(
-        "/sim2real_master_node/mtr_state", 100,
+        "/sim2real_master_node/mtr_state", joint_qos,
         std::bind(&HighTorqueRLInference::motorStateCallback, this, std::placeholders::_1));
 
+    // 对于 IMU 话题，使用 reliable + volatile（与 simple_bridge 兼容）
+    // simple_bridge 默认使用 reliable，必须匹配
+    auto imu_qos = rclcpp::QoS(rclcpp::KeepLast(200))  // 增大队列
+        .reliable()  // 与 simple_bridge 兼容
+        .durability_volatile();
+    
     imuSub_ = this->create_subscription<sensor_msgs::msg::Imu>(
-        "/imu/data", 100,
+        "/imu/data", imu_qos,
         std::bind(&HighTorqueRLInference::imuCallback, this, std::placeholders::_1));
 
+    auto cmd_qos = rclcpp::QoS(rclcpp::KeepLast(50))
+        .best_effort()
+        .durability_volatile();
     cmdVelSub_ = this->create_subscription<geometry_msgs::msg::Twist>(
-        "/cmd_vel", 50,
+        "/cmd_vel", cmd_qos,
         std::bind(&HighTorqueRLInference::cmdVelCallback, this, std::placeholders::_1));
 
     std::string joy_topic;
@@ -303,7 +328,8 @@ bool HighTorqueRLInference::init()
         joy_topic, 10,
         std::bind(&HighTorqueRLInference::joyCallback, this, std::placeholders::_1));
 
-    // Wait for initial state
+    // Attempt to wait for initial state but allow the node to continue if data has
+    // not yet arrived. dynamic_bridge 可能延迟创建话题桥接，因此不再强制退出。
     rclcpp::Rate rate(100);
     int timeout = 50;
     while (rclcpp::ok() && (!stateReceived_ || !imuReceived_) && timeout > 0)
@@ -312,10 +338,15 @@ bool HighTorqueRLInference::init()
         rate.sleep();
         timeout--;
     }
-    if (!stateReceived_ || !imuReceived_)
+    if (!stateReceived_)
     {
-        RCLCPP_ERROR(this->get_logger(), "Failed to receive initial state or IMU data");
-        return false;
+        RCLCPP_WARN(this->get_logger(),
+            "Initial robot or motor state not received yet, continuing without data.");
+    }
+    if (!imuReceived_)
+    {
+        RCLCPP_WARN(this->get_logger(),
+            "Initial IMU data not received yet, continuing without data.");
     }
 
     if (!loadPolicy())
@@ -328,7 +359,8 @@ bool HighTorqueRLInference::init()
 
 bool HighTorqueRLInference::loadPolicy()
 {
-#ifdef PLATFORM_ARM
+    RCLCPP_INFO(this->get_logger(), "Loading RKNN policy from: %s", policyPath_.c_str());
+    
     int modelSize = 0;
     unsigned char* modelData = readFileData(policyPath_.c_str(), &modelSize);
     if (!modelData)
@@ -336,19 +368,27 @@ bool HighTorqueRLInference::loadPolicy()
         RCLCPP_ERROR(this->get_logger(), "Failed to read policy file: %s", policyPath_.c_str());
         return false;
     }
+    
+    RCLCPP_INFO(this->get_logger(), "Policy file loaded, size: %d bytes", modelSize);
+    
     int ret = rknn_init(&ctx_, modelData, modelSize, 0, nullptr);
     free(modelData);
     if (ret < 0)
     {
-        RCLCPP_ERROR(this->get_logger(), "RKNN init failed: %d", ret);
+        RCLCPP_ERROR(this->get_logger(), "RKNN init failed with error code: %d", ret);
         return false;
     }
+    
+    RCLCPP_INFO(this->get_logger(), "RKNN context initialized successfully");
+    
     ret = rknn_query(ctx_, RKNN_QUERY_IN_OUT_NUM, &ioNum_, sizeof(ioNum_));
     if (ret < 0)
     {
-        RCLCPP_ERROR(this->get_logger(), "RKNN query failed: %d", ret);
+        RCLCPP_ERROR(this->get_logger(), "RKNN query failed with error code: %d", ret);
         return false;
     }
+    
+    RCLCPP_INFO(this->get_logger(), "RKNN query successful: %d inputs, %d outputs", ioNum_.n_input, ioNum_.n_output);
 
     memset(rknnInputs_, 0, sizeof(rknnInputs_));
     rknnInputs_[0].index = 0;
@@ -362,10 +402,6 @@ bool HighTorqueRLInference::loadPolicy()
     
     RCLCPP_INFO(this->get_logger(), "RKNN policy loaded successfully");
     return true;
-#else
-    RCLCPP_WARN(this->get_logger(), "RKNN not available on this platform (for development/testing only)");
-    return true;
-#endif
 }
 
 /**
@@ -413,7 +449,6 @@ void HighTorqueRLInference::updateObservation()
  */
 void HighTorqueRLInference::updateAction()
 {
-#ifdef PLATFORM_ARM
     for (int i = 0; i < frameStack_; ++i)
     {
         obsInput_.block(0, i * numSingleObs_, 1, numSingleObs_) = histObs_[i].transpose();
@@ -438,10 +473,7 @@ void HighTorqueRLInference::updateAction()
     }
 
     rknn_outputs_release(ctx_, ioNum_.n_output, rknnOutputs_);
-#else
-    // For non-ARM platforms (development/testing), generate zero actions
-    action_ = Eigen::VectorXd::Zero(numActions_);
-#endif
+
 }
 
 void HighTorqueRLInference::quat2euler()
@@ -469,6 +501,8 @@ void HighTorqueRLInference::robotStateCallback(const sensor_msgs::msg::JointStat
 {
     if (msg->position.size() < static_cast<size_t>(numActions_))
     {
+        RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 5000,
+            "Robot state size mismatch: expected %d, got %zu", numActions_, msg->position.size());
         return;
     }
 
@@ -485,6 +519,7 @@ void HighTorqueRLInference::robotStateCallback(const sensor_msgs::msg::JointStat
     if (!stateReceived_)
     {
         stateReceived_ = true;
+        RCLCPP_INFO(this->get_logger(), "Robot state callback: first data received");
     }
 }
 
@@ -524,17 +559,35 @@ void HighTorqueRLInference::imuCallback(const sensor_msgs::msg::Imu::SharedPtr m
     baseAngVel_[0] = msg->angular_velocity.x;
     baseAngVel_[1] = msg->angular_velocity.y;
     baseAngVel_[2] = msg->angular_velocity.z;
+    
+    // 调试输出：每2秒打印一次 IMU 数据
+    static auto lastImuDebugTime = this->now();
+    if ((this->now() - lastImuDebugTime).seconds() > 2.0)
+    {
+        lastImuDebugTime = this->now();
+        std::stringstream ss;
+        ss << "IMU Data Received:" << std::endl;
+        ss << "  Orientation (quaternion): x=" << quat_.x() << ", y=" << quat_.y() 
+           << ", z=" << quat_.z() << ", w=" << quat_.w() << std::endl;
+        ss << "  Euler Angles (rad): roll=" << eulerAngles_[0] 
+           << ", pitch=" << eulerAngles_[1] << ", yaw=" << eulerAngles_[2] << std::endl;
+        ss << "  Angular Velocity (rad/s): x=" << baseAngVel_[0] 
+           << ", y=" << baseAngVel_[1] << ", z=" << baseAngVel_[2];
+        RCLCPP_INFO(this->get_logger(), "%s", ss.str().c_str());
+    }
+    
     if (!imuReceived_)
     {
         imuReceived_ = true;
+        RCLCPP_INFO(this->get_logger(), "✓ IMU callback: first data received");
     }
 }
 
 void HighTorqueRLInference::cmdVelCallback(const geometry_msgs::msg::Twist::SharedPtr msg)
 {
-    command_[0] = std::clamp(msg->linear.x, -0.55, 0.55);
-    command_[1] = std::clamp(msg->linear.y, -0.3, 0.3);
-    command_[2] = std::clamp(msg->angular.z, -2.0, 2.0);
+    command_[0] = msg->linear.x;
+    command_[1] = msg->linear.y;
+    command_[2] = msg->angular.z;
 }
 
 void HighTorqueRLInference::joyCallback(const sensor_msgs::msg::Joy::SharedPtr msg)
