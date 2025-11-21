@@ -16,6 +16,7 @@
 #include <chrono>
 #include <cmath>
 #include <cstring>
+#include <iomanip>
 #include <sstream>
 #include <yaml-cpp/yaml.h>
 #include <ament_index_cpp/get_package_share_directory.hpp>
@@ -132,31 +133,74 @@ HighTorqueRLInference::HighTorqueRLInference()
         YAML::Node config = YAML::LoadFile(configFile);
 
         // Read basic parameters
-        numActions_ = config["num_actions"].as<int>(12);
-        numSingleObs_ = config["num_single_obs"].as<int>(36);
-        frameStack_ = config["frame_stack"].as<int>(1);
-        clipObs_ = config["clip_obs"].as<double>(18.0);
+        numActions_ = config["num_actions"].as<int>();          // 实际控制的关节数
+        policyDofs_ = config["policy_dofs"].as<int>(); // 策略输出维度
+        numSingleObs_ = config["num_single_obs"].as<int>();
+        clipObs_ = config["clip_obs"].as<double>();
 
         // Read policy name and build path
-        std::string policyName = config["policy_name"].as<std::string>("policy_0322_12dof_4000.rknn");
+        std::string policyName = config["policy_name"].as<std::string>();
         policyPath_ = pkgPath + "/policy/" + policyName;
+        RCLCPP_INFO(this->get_logger(), "Policy name: %s", policyName.c_str());
 
         // Read control frequency
-        double dt = config["dt"].as<double>(0.001);
-        int decimation = config["decimation"].as<int>(10);
+        double dt = config["dt"].as<double>();
+        int decimation = config["decimation"].as<int>();
         rlCtrlFreq_ = 1.0 / (dt * decimation);
 
         // Read scaling parameters
-        cmdLinVelScale_ = config["cmd_lin_vel_scale"].as<double>(1.0);
-        cmdAngVelScale_ = config["cmd_ang_vel_scale"].as<double>(1.25);
-        rbtLinPosScale_ = config["rbt_lin_pos_scale"].as<double>(1.0);
-        rbtLinVelScale_ = config["rbt_lin_vel_scale"].as<double>(1.0);
-        rbtAngVelScale_ = config["rbt_ang_vel_scale"].as<double>(1.0);
-        actionScale_ = config["action_scale"].as<double>(1.0);
+        cmdLinVelScale_ = config["cmd_lin_vel_scale"].as<double>();
+        cmdAngVelScale_ = config["cmd_ang_vel_scale"].as<double>();
+        rbtLinPosScale_ = config["rbt_lin_pos_scale"].as<double>();
+        rbtLinVelScale_ = config["rbt_lin_vel_scale"].as<double>();
+        rbtAngVelScale_ = config["rbt_ang_vel_scale"].as<double>();
+        actionScale_ = config["action_scale"].as<double>();
 
         // Read action limits
         std::vector<double> clipLower = config["clip_actions_lower"].as<std::vector<double>>();
         std::vector<double> clipUpper = config["clip_actions_upper"].as<std::vector<double>>();
+
+        // Read AMP-specific parameters (与 amp_pi_plus_20dof.yaml 对应)
+        
+        // 控制模式
+        controlMode_ = config["control_mode"].as<std::string>();
+        
+        // 速度限制
+        cmdVelXMin_ = config["cmd_vel_x_min"].as<double>();
+        cmdVelYMin_ = config["cmd_vel_y_min"].as<double>();
+        cmdVelYMax_ = config["cmd_vel_y_max"].as<double>();
+        cmdVelYawMin_ = config["cmd_vel_yaw_min"].as<double>();
+        cmdVelYawMax_ = config["cmd_vel_yaw_max"].as<double>();
+        
+        // Soccer/Fight 模式参数
+        cmdVelFilterScaleSoccer_ = config["cmd_vel_filter_scale_soccer"].as<double>();
+        cmdVelFilterScaleFight_ = config["cmd_vel_filter_scale_fight"].as<double>();
+        cmdVelXMaxSoccerNormal_ = config["cmd_vel_x_max_soccer_normal"].as<double>();
+        cmdVelXMaxSoccerBoost_ = config["cmd_vel_x_max_soccer_boost"].as<double>();
+        cmdVelXMaxFight_ = config["cmd_vel_x_max_fight"].as<double>();
+        
+        // 兼容旧配置：单个速度限制和滤波参数（可选）
+        if (config["cmd_vel_filter_scale"])
+        {
+            cmdVelFilterScale_ = config["cmd_vel_filter_scale"].as<double>();
+        }
+        
+        if (config["cmd_vel_x_max"])
+        {
+            cmdVelXMax_ = config["cmd_vel_x_max"].as<double>();
+        }
+        
+        // 动作滤波和缩放
+        actionFilterScale_ = config["action_filter_scale"].as<double>();
+        
+        if (config["action_scales"])
+        {
+            actionScales_ = config["action_scales"].as<std::vector<double>>();
+        }
+        if (config["default_pose"])
+        {
+            defaultPose_ = config["default_pose"].as<std::vector<double>>();
+        }
 
         // Read motor configuration
         if (config["motor_direction"])
@@ -171,6 +215,12 @@ HighTorqueRLInference::HighTorqueRLInference()
         {
             actualToPolicyMap_ = config["map_index"].as<std::vector<int>>();
         }
+        
+        // Read policy to control mapping (for extracting leg joints from 20dof policy output)
+        if (config["policy_to_control_map"])
+        {
+            policyToControlMap_ = config["policy_to_control_map"].as<std::vector<int>>();
+        }
 
         // Model type (can be overridden from parameters)
         this->get_parameter("model_type", modelType_);
@@ -178,14 +228,14 @@ HighTorqueRLInference::HighTorqueRLInference()
         RCLCPP_INFO(this->get_logger(), "YAML config loaded successfully:");
         RCLCPP_INFO(this->get_logger(), "  num_actions: %d", numActions_);
         RCLCPP_INFO(this->get_logger(), "  num_single_obs: %d", numSingleObs_);
-        RCLCPP_INFO(this->get_logger(), "  frame_stack: %d", frameStack_);
         RCLCPP_INFO(this->get_logger(), "  rl_ctrl_freq: %.1f Hz", rlCtrlFreq_);
         RCLCPP_INFO(this->get_logger(), "  policy_path: %s", policyPath_.c_str());
         RCLCPP_INFO(this->get_logger(), "  action_scale: %.2f", actionScale_);
 
-        clipActionsLower_.resize(numActions_);
-        clipActionsUpper_.resize(numActions_);
-        for (int i = 0; i < numActions_ && i < (int)clipLower.size(); ++i)
+        // Action limits 应该与策略输出维度一致
+        clipActionsLower_.resize(policyDofs_);
+        clipActionsUpper_.resize(policyDofs_);
+        for (int i = 0; i < policyDofs_ && i < (int)clipLower.size(); ++i)
         {
             clipActionsLower_[i] = static_cast<float>(clipLower[i]);
             clipActionsUpper_[i] = static_cast<float>(clipUpper[i]);
@@ -194,73 +244,110 @@ HighTorqueRLInference::HighTorqueRLInference()
     catch (const YAML::Exception& e)
     {
         RCLCPP_ERROR(this->get_logger(), "YAML parsing error: %s", e.what());
-        RCLCPP_ERROR(this->get_logger(), "Using default parameters");
-
-        // Use default values
-        numActions_ = 12;
-        numSingleObs_ = 36;
-        frameStack_ = 1;
-        rlCtrlFreq_ = 100.0;
-        clipObs_ = 18.0;
-        cmdLinVelScale_ = 1.0;
-        cmdAngVelScale_ = 1.25;
-        rbtLinPosScale_ = 1.0;
-        rbtLinVelScale_ = 1.0;
-        rbtAngVelScale_ = 1.0;
-        actionScale_ = 1.0;
-        policyPath_ = pkgPath + "/policy/policy_0322_12dof_4000.rknn";
-        this->get_parameter("model_type", modelType_);
-        stepsPeriod_ = 60.0;
-
-        // Default limits
-        std::vector<float> lower = {-1.00, -0.40, -0.60, -1.30, -0.75, -0.30, -1.00, -0.40, -0.60, -1.30, -0.75, -0.30};
-        std::vector<float> upper = {1.00, 0.40, 0.60, 1.30, 0.75, 0.30, 1.00, 0.40, 0.60, 1.30, 0.75, 0.30};
-        clipActionsLower_ = lower;
-        clipActionsUpper_ = upper;
-
-        // Default motor configuration
-        motorDirection_ = {1, 1, -1, -1, 1, 1, -1, 1, -1, 1, -1, 1};
-        actualToPolicyMap_ = {5, 4, 3, 2, 1, 0, 11, 10, 9, 8, 7, 6};
+        RCLCPP_FATAL(this->get_logger(), "Failed to load required configuration parameters. Please check your YAML file.");
+        throw;
     }
 
     // Initialize Eigen vectors
-    robotJointPositions_ = Eigen::VectorXd::Zero(numActions_);
-    robotJointVelocities_ = Eigen::VectorXd::Zero(numActions_);
-    motorJointPositions_ = Eigen::VectorXd::Zero(numActions_);
-    motorJointVelocities_ = Eigen::VectorXd::Zero(numActions_);
+    // 注意：所有关节相关的向量都应该是 policyDofs_ 维度（策略输出维度）
+    robotJointPositions_ = Eigen::VectorXd::Zero(policyDofs_);
+    robotJointVelocities_ = Eigen::VectorXd::Zero(policyDofs_);
+    motorJointPositions_ = Eigen::VectorXd::Zero(policyDofs_);
+    motorJointVelocities_ = Eigen::VectorXd::Zero(policyDofs_);
     eulerAngles_ = Eigen::Vector3d::Zero();
     baseAngVel_ = Eigen::Vector3d::Zero();
     command_ = Eigen::Vector3d::Zero();
-    action_ = Eigen::VectorXd::Zero(numActions_);
+    action_ = Eigen::VectorXd::Zero(policyDofs_);
 
     observations_ = Eigen::VectorXd::Zero(numSingleObs_);
-    for (int i = 0; i < frameStack_; ++i)
+    // 初始化历史观测缓冲区（5帧），与 PolicyBase 保持一致
+    for (int i = 0; i < 5; ++i)
     {
-        histObs_.push_back(Eigen::VectorXd::Zero(numSingleObs_));
+        histObs_.emplace_back(Eigen::VectorXd::Zero(numSingleObs_));
     }
-    obsInput_ = Eigen::MatrixXd::Zero(1, numSingleObs_ * frameStack_);
+    obsInput_ = Eigen::MatrixXd::Zero(1, numSingleObs_ * 5);
 
     quat_ = Eigen::Quaterniond::Identity();
 
-    // Check vector sizes
-    if (urdfOffset_.size() != static_cast<size_t>(numActions_))
+    // Check vector sizes (都应该与 policyDofs_ 对齐)
+    if (urdfOffset_.size() != static_cast<size_t>(policyDofs_))
     {
-        urdfOffset_.assign(numActions_, 0.0);
+        urdfOffset_.assign(policyDofs_, 0.0);
+        RCLCPP_WARN(this->get_logger(), "urdf_offset resized to %d", policyDofs_);
     }
-    if (motorDirection_.size() != static_cast<size_t>(numActions_))
+    if (motorDirection_.size() != static_cast<size_t>(policyDofs_))
     {
-        motorDirection_.assign(numActions_, 1);
+        motorDirection_.assign(policyDofs_, 1);
+        RCLCPP_WARN(this->get_logger(), "motor_direction resized to %d", policyDofs_);
     }
-    if (actualToPolicyMap_.size() != static_cast<size_t>(numActions_))
+    if (actualToPolicyMap_.size() != static_cast<size_t>(policyDofs_))
     {
-        std::vector<int> defaultMap(numActions_);
-        for (int i = 0; i < numActions_; ++i)
+        std::vector<int> defaultMap(policyDofs_);
+        for (int i = 0; i < policyDofs_; ++i)
             defaultMap[i] = i;
         actualToPolicyMap_ = defaultMap;
+        RCLCPP_WARN(this->get_logger(), "actual_to_policy_map resized to %d", policyDofs_);
+    }
+    
+    // 验证 policy_to_control_map 的大小
+    // 策略输出 policyDofs_ (20)个关节，需要重新排序到 numActions_ (22)的前20个位置
+    if (policyToControlMap_.empty())
+    {
+        RCLCPP_ERROR(this->get_logger(), 
+            "policy_to_control_map is empty! This is required to map policy output (interleaved order) to control output (grouped order)");
+        RCLCPP_ERROR(this->get_logger(), 
+            "Please add policy_to_control_map in config file");
+    }
+    else if (policyToControlMap_.size() != static_cast<size_t>(policyDofs_))
+    {
+        RCLCPP_ERROR(this->get_logger(), 
+            "policy_to_control_map size (%zu) != policy_dofs (%d)",
+            policyToControlMap_.size(), policyDofs_);
+    }
+    else
+    {
+        RCLCPP_INFO(this->get_logger(), 
+            "policy_to_control_map loaded: %d policy joints -> %d control joints (first %d positions)",
+            policyDofs_, numActions_, policyDofs_);
     }
 
     this->get_parameter("steps_period", stepsPeriod_);
     step_ = 0.0;
+
+    // Initialize AMP-specific members（都应该是 policyDofs_ 维度）
+    lastAction_ = Eigen::VectorXd::Zero(policyDofs_);
+    lastCmdVel_ = Eigen::Vector3d::Zero();
+    
+    // 确保动作缩放和默认姿态的大小正确（应该是 policyDofs_ = numActions_ = 20）
+    if (actionScales_.size() < static_cast<size_t>(policyDofs_))
+    {
+        actionScales_.resize(policyDofs_, 1.0);
+        RCLCPP_WARN(this->get_logger(), "Action scales resized to %d, using default 1.0 for missing values", policyDofs_);
+    }
+    
+    if (defaultPose_.size() < static_cast<size_t>(policyDofs_))
+    {
+        defaultPose_.resize(policyDofs_, 0.0);
+        RCLCPP_WARN(this->get_logger(), "Default pose resized to %d, using default 0.0 for missing values", policyDofs_);
+    }
+    
+    RCLCPP_INFO(this->get_logger(), "AMP Policy parameters:");
+    RCLCPP_INFO(this->get_logger(), "  control_mode: %s", controlMode_.c_str());
+    if (controlMode_ == "Soccer")
+    {
+        RCLCPP_INFO(this->get_logger(), "  Soccer mode - filter_scale: %.2f, normal_speed: %.2f, boost_speed: %.2f",
+                    cmdVelFilterScaleSoccer_, cmdVelXMaxSoccerNormal_, cmdVelXMaxSoccerBoost_);
+    }
+    else if (controlMode_ == "Fight")
+    {
+        RCLCPP_INFO(this->get_logger(), "  Fight mode - filter_scale: %.2f, max_speed: %.2f",
+                    cmdVelFilterScaleFight_, cmdVelXMaxFight_);
+    }
+    RCLCPP_INFO(this->get_logger(), "  action_filter_scale: %.2f", actionFilterScale_);
+    RCLCPP_INFO(this->get_logger(), "  cmd_vel limits: x[%.2f, --], y[%.2f, %.2f], yaw[%.2f, %.2f]",
+                cmdVelXMin_, cmdVelYMin_, cmdVelYMax_, cmdVelYawMin_, cmdVelYawMax_);
+    
+    currentState_ = RUNNING;
 }
 
 HighTorqueRLInference::~HighTorqueRLInference()
@@ -359,6 +446,8 @@ bool HighTorqueRLInference::init()
 
 bool HighTorqueRLInference::loadPolicy()
 {
+    std::string policyName = policyPath_.substr(policyPath_.find_last_of("/") + 1);
+    RCLCPP_INFO(this->get_logger(), "Policy name: %s", policyName.c_str());
     RCLCPP_INFO(this->get_logger(), "Loading RKNN policy from: %s", policyPath_.c_str());
     
     int modelSize = 0;
@@ -405,7 +494,9 @@ bool HighTorqueRLInference::loadPolicy()
 }
 
 /**
- * @brief Update observation vector for RL policy
+ * @brief Update observation vector for AMP policy
+ * 观测顺序（完整20dof）：base_ang_vel(3) + projected_gravity(3) + commands(3) + dof_pos(20) + dof_vel(20) + actions(20) = 69维
+ * 与 AMPPolicy::updateObservation 完全对齐
  */
 void HighTorqueRLInference::updateObservation()
 {
@@ -414,45 +505,170 @@ void HighTorqueRLInference::updateObservation()
         observations_.resize(numSingleObs_);
     }
 
-    step_ += 1.0 / stepsPeriod_;
+    // ========== 测试模式：使用固定观测数据 ==========
+    static const double fixedObsData[] = {
+        0.1, -0.2, 0.3,    // base_ang_vel (3)
+        -0.4, 0.5, -0.6,   // projected_gravity (3)
+        0.2, -0.1, 0.0,    // cmd_vel (3)
+        0.0, 0.1, -0.1, 0.2, -0.2, 0.3, -0.3, 0.4, -0.4, 0.5, -0.5, 0.6, -0.6, 0.7, -0.7, 0.8, -0.8, 0.9, -0.9, 1.0,  // dof_pos (20)
+        -0.1, 0.1, -0.2, 0.2, -0.3, 0.3, -0.4, 0.4, -0.5, 0.5, -0.6, 0.6, -0.7, 0.7, -0.8, 0.8, -0.9, 0.9, -1.0, 1.0,  // dof_vel (20)
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0   // last_action (20) - 全部为0
+    };
+    const int fixedObsSize = sizeof(fixedObsData) / sizeof(fixedObsData[0]);
+    int copySize = std::min((int)observations_.size(), fixedObsSize);
+    for (int i = 0; i < copySize; ++i)
+    {
+        observations_[i] = fixedObsData[i];
+    }
+    for (int i = copySize; i < (int)observations_.size(); ++i)
+    {
+        observations_[i] = 0.0;
+    }
+    // 注意：历史缓冲区更新在 updateAction() 中进行，与 PolicyBase::getFinalObsInput() 保持一致
+    return;
+    // ========== 测试模式结束 ==========
 
-    observations_[0] = currentState_ == STANDBY ? 1.0 : std::sin(2 * M_PI * step_);
-    observations_[1] = currentState_ == STANDBY ? -1.0 : std::cos(2 * M_PI * step_);
-
+    /*
+    // ========== 真实数据计算（已注释，测试完成后恢复） ==========
+    int idx = 0;
+    
+    // 1. base_ang_vel (3维) - 基础角速度（与 amp_policy.cpp 第127行对应）
+    observations_.segment(idx, 3) = baseAngVel_ * rbtAngVelScale_;
+    idx += 3;
+    
+    // 2. projected_gravity (3维) - 重力投影（与 amp_policy.cpp 第130-133行对应）
+    Eigen::Vector3d gravityVec(0, 0, -1);
+    Eigen::Vector4d quatVec(quat_.x(), quat_.y(), quat_.z(), quat_.w());
+    observations_.segment(idx, 3) = rotateVectorByQuatVec4(quatVec, gravityVec);
+    idx += 3;
+    
+    // 3. commands (3维) - 速度命令（带滤波和限制，与 amp_policy.cpp 第136-168行对应）
     double cmdX = currentState_ == STANDBY ? 0.0 : command_[0];
     double cmdY = currentState_ == STANDBY ? 0.0 : command_[1];
     double cmdYaw = currentState_ == STANDBY ? 0.0 : command_[2];
-
-    observations_[2] = cmdX * cmdLinVelScale_ * (cmdX < 0 ? 0.5 : 1.0);
-    observations_[3] = cmdY * cmdLinVelScale_;
-    observations_[4] = cmdYaw * cmdAngVelScale_;
     
+    // 获取LT按键状态（与 amp_policy.cpp 第137行一致）
+    bool ltPressed = false;
+    if (joyReady_.load())
+    {
+        std::lock_guard<std::mutex> lock(joyMutex_);
+        int axis2;
+        this->get_parameter("joy_axis2", axis2);
+        ltPressed = (axis2 >= 0 && axis2 < (int)joyMsg_.axes.size()) && (std::abs(joyMsg_.axes[axis2]) > 0.8);
+    }
+    
+    // 根据控制模式确定x速度上限（与 amp_policy.cpp 第139-153行一致）
+    double maxVelX, dynamicCmdVelFilterScale;
+    if (controlMode_ == "Soccer")
+    {
+        // Soccer模式：按LT加速
+        maxVelX = ltPressed ? cmdVelXMaxSoccerBoost_ : cmdVelXMaxSoccerNormal_;
+        dynamicCmdVelFilterScale = ltPressed ? 1.0 : cmdVelFilterScaleSoccer_; // 按下直接氮气加速
+    }
+    else if (controlMode_ == "Fight")
+    {
+        // Fight模式：固定速度，不响应LT
+        maxVelX = cmdVelXMaxFight_;
+        dynamicCmdVelFilterScale = cmdVelFilterScaleFight_;
+    }
+    else
+    {
+        // 默认模式（兼容旧配置）
+        maxVelX = cmdVelXMax_;
+        dynamicCmdVelFilterScale = cmdVelFilterScale_;
+    }
+    
+    // 应用速度限制（与 amp_policy.cpp 第156-159行一致）
+    cmdX = std::clamp(cmdX, cmdVelXMin_, maxVelX);
+    cmdY = std::clamp(cmdY, cmdVelYMin_, cmdVelYMax_);
+    cmdYaw = std::clamp(cmdYaw, cmdVelYawMin_, cmdVelYawMax_);
+    
+    // 应用滤波（与 amp_policy.cpp 第163-165行一致）
+    observations_[idx + 0] = (cmdX * dynamicCmdVelFilterScale + lastCmdVel_[0] * (1 - dynamicCmdVelFilterScale)) * cmdLinVelScale_;
+    observations_[idx + 1] = (cmdY * dynamicCmdVelFilterScale + lastCmdVel_[1] * (1 - dynamicCmdVelFilterScale)) * cmdLinVelScale_;
+    observations_[idx + 2] = (cmdYaw * dynamicCmdVelFilterScale + lastCmdVel_[2] * (1 - dynamicCmdVelFilterScale)) * cmdAngVelScale_;
+    idx += 3;
+    
+    // 保存当前命令速度供下次滤波使用（与 amp_policy.cpp 第168行一致）
+    lastCmdVel_ << cmdX, cmdY, cmdYaw;
+    
+    // 4. dof_pos (policyDofs_维=20) - 关节位置（与 amp_policy.cpp 第171行对应）
     std::unique_lock<std::shared_timed_mutex> lk(mutex_);
-    observations_.segment(5, numActions_) = robotJointPositions_ * rbtLinPosScale_;
-    observations_.segment(17, numActions_) = robotJointVelocities_ * rbtLinVelScale_;
+    observations_.segment(idx, policyDofs_) = robotJointPositions_.head(policyDofs_) * rbtLinPosScale_;
+    idx += policyDofs_;
+    
+    // 5. dof_vel (policyDofs_维=20) - 关节速度（与 amp_policy.cpp 第174行对应）
+    observations_.segment(idx, policyDofs_) = robotJointVelocities_.head(policyDofs_) * rbtLinVelScale_;
+    idx += policyDofs_;
     lk.unlock();
+    
+    // 6. actions (policyDofs_维=20) - 上次动作输出（与 amp_policy.cpp 第177行对应）
+    observations_.segment(idx, policyDofs_) = lastAction_.head(policyDofs_);
+    idx += policyDofs_;
 
-    observations_.segment(29, 3) = baseAngVel_ * rbtAngVelScale_;
-    observations_.segment(32, 3) = eulerAngles_;
-
+    // 裁剪观测值（与 amp_policy.cpp 第181行对应）
     for (int i = 0; i < numSingleObs_; ++i)
     {
         observations_[i] = std::clamp(observations_[i], -clipObs_, clipObs_);
     }
-
-    histObs_.push_back(observations_);
-    histObs_.pop_front();
+    // ========== 真实数据计算结束 ==========
+    */
 }
 
 /**
  * @brief Run RKNN inference to generate actions
+ * 直接输出完整20dof，不需要映射
+ * 注意：模型需要5帧堆叠输入（345 = 69 * 5），与 PolicyBase::getFinalObsInput() 逻辑一致
  */
 void HighTorqueRLInference::updateAction()
 {
-    for (int i = 0; i < frameStack_; ++i)
+    // ========== 测试模式：使用固定的345维观测（5帧×69维） ==========
+    static bool fixed345ObsInitialized = false;
+    static Eigen::MatrixXd fixed345Obs;
+    if (!fixed345ObsInitialized)
+    {
+        // 定义固定的69维单帧观测数据（与 sim2real.cpp 完全一致）
+        static const double singleFrameObs[] = {
+            0.1, -0.2, 0.3,    // base_ang_vel (3)
+            -0.4, 0.5, -0.6,   // projected_gravity (3)
+            0.2, -0.1, 0.0,    // cmd_vel (3)
+            0.0, 0.1, -0.1, 0.2, -0.2, 0.3, -0.3, 0.4, -0.4, 0.5, -0.5, 0.6, -0.6, 0.7, -0.7, 0.8, -0.8, 0.9, -0.9, 1.0,  // dof_pos (20)
+            -0.1, 0.1, -0.2, 0.2, -0.3, 0.3, -0.4, 0.4, -0.5, 0.5, -0.6, 0.6, -0.7, 0.7, -0.8, 0.8, -0.9, 0.9, -1.0, 1.0,  // dof_vel (20)
+            0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0   // last_action (20)
+        };
+        const int singleFrameSize = sizeof(singleFrameObs) / sizeof(singleFrameObs[0]);
+        
+        // 构造345维观测（5帧堆叠，每帧69维）
+        fixed345Obs = Eigen::MatrixXd::Zero(1, 345);
+        for (int frame = 0; frame < 5; ++frame)
+        {
+            for (int i = 0; i < singleFrameSize && i < 69; ++i)
+            {
+                fixed345Obs(0, frame * 69 + i) = singleFrameObs[i];
+            }
+        }
+        fixed345ObsInitialized = true;
+    }
+    obsInput_ = fixed345Obs;  // 直接使用固定的345维观测
+    // ========== 测试模式结束 ==========
+    
+    /*
+    // ========== 真实数据堆叠（已注释，测试完成后恢复） ==========
+    // 与 PolicyBase::getFinalObsInput() 逻辑一致：
+    // 1. 将当前观测添加到历史缓冲区
+    histObs_.push_back(observations_);
+    // 2. 保持缓冲区大小为5帧
+    while (histObs_.size() > 5)
+    {
+        histObs_.pop_front();
+    }
+    // 3. 将历史缓冲区中的5帧数据堆叠成最终输入
+    for (int i = 0; i < 5; ++i)
     {
         obsInput_.block(0, i * numSingleObs_, 1, numSingleObs_) = histObs_[i].transpose();
     }
+    // ========== 真实数据堆叠结束 ==========
+    */
 
     std::vector<float> inputData(obsInput_.size());
     Eigen::Index obsSize = obsInput_.size();
@@ -461,19 +677,42 @@ void HighTorqueRLInference::updateAction()
         inputData[i] = obsInput_(i);
     }
 
+    // 打印传入推理引擎的完整输入
+    std::stringstream inputStr;
+    inputStr << "Input(" << inputData.size() << "): ";
+    for (size_t i = 0; i < inputData.size(); ++i)
+    {
+        inputStr << std::fixed << std::setprecision(6) << inputData[i];
+        if (i < inputData.size() - 1)
+            inputStr << ", ";
+    }
+    RCLCPP_INFO(this->get_logger(), "%s", inputStr.str().c_str());
+
     rknnInputs_[0].buf = inputData.data();
     rknn_inputs_set(ctx_, ioNum_.n_input, rknnInputs_);
     rknn_run(ctx_, nullptr);
     rknn_outputs_get(ctx_, ioNum_.n_output, rknnOutputs_, nullptr);
 
     float* outputData = static_cast<float*>(rknnOutputs_[0].buf);
-    for (int i = 0; i < numActions_; ++i)
+    
+    // 打印原始推理输出（未裁剪）
+    std::stringstream rawOutputStr;
+    rawOutputStr << "RawOutput: ";
+    for (int i = 0; i < policyDofs_; ++i)
+    {
+        rawOutputStr << std::fixed << std::setprecision(6) << outputData[i];
+        if (i < policyDofs_ - 1)
+            rawOutputStr << ", ";
+    }
+    RCLCPP_INFO(this->get_logger(), "%s", rawOutputStr.str().c_str());
+    
+    // 直接使用策略输出（完整20dof）
+    for (int i = 0; i < policyDofs_; ++i)
     {
         action_[i] = std::clamp(outputData[i], clipActionsLower_[i], clipActionsUpper_[i]);
     }
 
     rknn_outputs_release(ctx_, ioNum_.n_output, rknnOutputs_);
-
 }
 
 void HighTorqueRLInference::quat2euler()
@@ -497,20 +736,32 @@ void HighTorqueRLInference::quat2euler()
     eulerAngles_ << roll, pitch, yaw;
 }
 
+Eigen::Vector3d HighTorqueRLInference::rotateVectorByQuatVec4(const Eigen::Vector4d& q, const Eigen::Vector3d& v)
+{
+    double qx = q[0], qy = q[1], qz = q[2], qw = q[3];
+    Eigen::Vector3d qVec(qx, qy, qz);
+
+    Eigen::Vector3d term1 = v * (2.0 * qw * qw - 1.0);
+    Eigen::Vector3d term2 = qVec.cross(v) * qw * 2.0;
+    Eigen::Vector3d term3 = qVec * qVec.dot(v) * 2.0;
+
+    return term1 - term2 + term3;
+}
+
 void HighTorqueRLInference::robotStateCallback(const sensor_msgs::msg::JointState::SharedPtr msg)
 {
-    if (msg->position.size() < static_cast<size_t>(numActions_))
+    if (msg->position.size() < static_cast<size_t>(policyDofs_))
     {
         RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 5000,
-            "Robot state size mismatch: expected %d, got %zu", numActions_, msg->position.size());
+            "Robot state size mismatch: expected %d, got %zu", policyDofs_, msg->position.size());
         return;
     }
 
     std::unique_lock<std::shared_timed_mutex> lk(mutex_);
-    for (int i = 0; i < numActions_; ++i)
+    for (int i = 0; i < policyDofs_; ++i)
     {
         robotJointPositions_[i] = msg->position[i];
-        if (msg->velocity.size() >= static_cast<size_t>(numActions_))
+        if (msg->velocity.size() >= static_cast<size_t>(policyDofs_))
         {
             robotJointVelocities_[i] = msg->velocity[i];
         }
@@ -519,33 +770,38 @@ void HighTorqueRLInference::robotStateCallback(const sensor_msgs::msg::JointStat
     if (!stateReceived_)
     {
         stateReceived_ = true;
-        RCLCPP_INFO(this->get_logger(), "Robot state callback: first data received");
+        RCLCPP_INFO(this->get_logger(), "Robot state callback: first data received (20 dof)");
     }
 }
 
 void HighTorqueRLInference::motorStateCallback(const sensor_msgs::msg::JointState::SharedPtr msg)
 {
-    if (msg->position.size() < static_cast<size_t>(numActions_))
+    if (msg->position.size() < static_cast<size_t>(policyDofs_))
     {
+        RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 5000,
+            "Motor state size mismatch: expected %d, got %zu", policyDofs_, msg->position.size());
         return;
     }
 
-    for (int i = 0; i < numActions_; ++i)
+    std::unique_lock<std::shared_timed_mutex> lk(mutex_);
+    for (int i = 0; i < policyDofs_; ++i)
     {
         int policyIdx = actualToPolicyMap_[i];
-        if (policyIdx >= 0 && policyIdx < numActions_)
+        if (policyIdx >= 0 && policyIdx < policyDofs_)
         {
             motorJointPositions_[policyIdx] = msg->position[i] * motorDirection_[i];
-            if (msg->velocity.size() >= static_cast<size_t>(numActions_))
+            if (msg->velocity.size() >= static_cast<size_t>(policyDofs_))
             {
                 motorJointVelocities_[policyIdx] = msg->velocity[i] * motorDirection_[i];
             }
         }
     }
+    lk.unlock();
 
     if (!stateReceived_)
     {
         stateReceived_ = true;
+        RCLCPP_INFO(this->get_logger(), "Motor state callback: first data received (20 dof)");
     }
 }
 
@@ -605,11 +861,8 @@ void HighTorqueRLInference::run()
     {
         rclcpp::spin_some(this->get_node_base_interface());
 
-        if (currentState_ != NOT_READY)
-        {
-            updateObservation();
-            updateAction();
-        }
+        updateObservation();
+        updateAction();
 
         if (joyReady_.load())
         {
@@ -676,27 +929,58 @@ void HighTorqueRLInference::run()
             }
         }
 
-        if (currentState_ == NOT_READY)
-        {
-            rate.sleep();
-            continue;
-        }
-
         auto msg = sensor_msgs::msg::JointState();
         msg.header.stamp = rclcpp::Time(0);
 
-        msg.position.resize(22);
-        // Scale action based on state: RUNNING uses actionScale_, other states use 0.05
-        double scale = (currentState_ == RUNNING) ? actionScale_ : 0.05;
-
-        for (int i = 0; i < 12; ++i)
+        // 发布22dof到话题（20个控制关节 + 2个头部关节固定为0）
+        msg.position.resize(numActions_);  // numActions_ = 22
+        
+        // ========== AMP动作后处理：完全对齐 AMPPolicy::postModifyOutput (amp_policy.cpp 第187-201行) ==========
+        
+        // 步骤1：保存当前原始动作（用于下次滤波，与 amp_policy.cpp 第189行对应）
+        Eigen::VectorXd currentRawAction = action_;
+        
+        // 步骤2：动作后处理 - 滤波 + 缩放 + 默认姿态（与 amp_policy.cpp 第192-195行对应）
+        Eigen::VectorXd processedAction(policyDofs_);
+        for (int i = 0; i < policyDofs_; ++i)
         {
-            msg.position[i] = action_[i] * scale;
+            // 公式：(action[i] * filterScale + lastAction[i] * (1 - filterScale)) * actionScales[i] + defaultPose[i]
+            processedAction[i] = (action_[i] * actionFilterScale_ + lastAction_[i] * (1 - actionFilterScale_)) 
+                               * actionScales_[i] + defaultPose_[i];
         }
-        for (int i = 12; i < 22; ++i)
+        
+        // 步骤3：根据状态调整全局缩放（与 sim2real.cpp 第1165-1167行对应）
+        // RUNNING 或 PRE_POLICY_CHANGE 使用 actionScale_，其他状态（STANDBY等）使用 0.05
+        double stateScale = (currentState_ == RUNNING) ? actionScale_ : 0.05;
+        
+        // 步骤4：使用 policy_to_control_map 重新排序输出
+        // 策略输出(交错顺序) -> PD配置(分组顺序)
+        // 策略输出20个关节，通过映射表重新排列到PD配置期望的顺序
+        if (!policyToControlMap_.empty() && policyToControlMap_.size() == static_cast<size_t>(policyDofs_))
         {
-            msg.position[i] = 0.0;
+            for (int i = 0; i < policyDofs_; ++i)
+            {
+                int targetIdx = policyToControlMap_[i];
+                msg.position[targetIdx] = processedAction[i] * stateScale;
+            }
         }
+        else
+        {
+            // 如果映射表不可用，直接按顺序填充（不推荐）
+            RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 5000,
+                "policy_to_control_map not available, using direct mapping (may cause wrong joint order)");
+            for (int i = 0; i < policyDofs_; ++i)
+            {
+                msg.position[i] = processedAction[i] * stateScale;
+            }
+        }
+        
+        // 最后2个关节（头部）固定为0
+        msg.position[20] = 0.0;  // head_yaw_joint
+        msg.position[21] = 0.0;  // head_pitch_joint
+        
+        // 步骤5：更新 lastAction_ 为原始动作（用于下次滤波和观测，与 amp_policy.cpp 第189行对应）
+        lastAction_ = currentRawAction;
 
         jointCmdPub_->publish(msg);
         rate.sleep();

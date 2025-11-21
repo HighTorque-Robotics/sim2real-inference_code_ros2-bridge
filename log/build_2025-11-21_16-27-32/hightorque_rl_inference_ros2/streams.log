@@ -1,0 +1,101 @@
+[0.031s] Invoking command in '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2': CMAKE_PREFIX_PATH=/home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2:/opt/ros/foxy:/opt/ros/noetic /usr/bin/cmake /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2 -DCMAKE_INSTALL_PREFIX=/home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2
+[0.274s] -- The C compiler identification is GNU 9.4.0
+[0.516s] -- The CXX compiler identification is GNU 9.4.0
+[0.532s] -- Check for working C compiler: /usr/bin/cc
+[0.832s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.835s] -- Detecting C compiler ABI info
+[1.122s] -- Detecting C compiler ABI info - done
+[1.163s] -- Detecting C compile features
+[1.164s] -- Detecting C compile features - done
+[1.172s] -- Check for working CXX compiler: /usr/bin/c++
+[1.510s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[1.517s] -- Detecting CXX compiler ABI info
+[1.888s] -- Detecting CXX compiler ABI info - done
+[1.973s] -- Detecting CXX compile features
+[1.976s] -- Detecting CXX compile features - done
+[1.989s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[2.122s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[2.123s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[2.587s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[2.641s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[2.648s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[2.986s] -- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[3.072s] -- Found FastRTPS: /opt/ros/foxy/include  
+[3.242s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[3.313s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[3.314s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[3.315s] -- Looking for pthread.h
+[3.608s] -- Looking for pthread.h - found
+[3.609s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[3.907s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[3.908s] -- Looking for pthread_create in pthreads
+[4.156s] -- Looking for pthread_create in pthreads - not found
+[4.157s] -- Looking for pthread_create in pthread
+[4.516s] -- Looking for pthread_create in pthread - found
+[4.523s] -- Found Threads: TRUE  
+[4.822s] -- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)
+[4.982s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/foxy/share/eigen3_cmake_module/cmake)
+[4.986s] -- Found Eigen3: TRUE (found version "3.3.7") 
+[4.989s] -- Found ament_index_cpp: 1.1.0 (/opt/ros/foxy/share/ament_index_cpp/cmake)
+[4.996s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[5.141s] -- Added test 'copyright' to check source files copyright and LICENSE
+[5.142s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[5.142s] -- Configured cppcheck include dirs: /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/include/rknn;/home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2/include
+[5.143s] -- Configured cppcheck exclude dirs and/or files: 
+[5.144s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[5.144s] -- Configured cpplint exclude dirs and/or files: 
+[5.145s] -- Added test 'flake8' to check Python code syntax and style conventions
+[5.145s] -- Added test 'lint_cmake' to check CMake code style
+[5.146s] -- Added test 'pep257' to check Python code against some of the style conventions in PEP 257
+[5.147s] -- Added test 'uncrustify' to check C / C++ code style
+[5.148s] -- Configured uncrustify additional arguments: 
+[5.148s] -- Added test 'xmllint' to check XML markup files
+[5.153s] -- Configuring done
+[5.171s] -- Generating done
+[5.179s] -- Build files have been written to: /home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2
+[5.220s] Invoked command in '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2' returned '0': CMAKE_PREFIX_PATH=/home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2:/opt/ros/foxy:/opt/ros/noetic /usr/bin/cmake /home/hightorque/zy_workspace/hightorque_rl_ros2/src/hightorque_rl_inference_ros2 -DCMAKE_INSTALL_PREFIX=/home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2
+[5.224s] Invoking command in '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2': CMAKE_PREFIX_PATH=/home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2:/opt/ros/foxy:/opt/ros/noetic /usr/bin/cmake --build /home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2 -- -j8 -l8
+[5.417s] [35m[1mScanning dependencies of target hightorque_rl_inference_ros2_lib[0m
+[5.644s] [ 25%] [32mBuilding CXX object CMakeFiles/hightorque_rl_inference_ros2_lib.dir/src/hightorque_rl_inference_ros2.cpp.o[0m
+[26.697s] [ 50%] [32m[1mLinking CXX static library libhightorque_rl_inference_ros2_lib.a[0m
+[27.178s] [ 50%] Built target hightorque_rl_inference_ros2_lib
+[27.216s] [35m[1mScanning dependencies of target hightorque_rl_inference_ros2_node[0m
+[27.400s] [ 75%] [32mBuilding CXX object CMakeFiles/hightorque_rl_inference_ros2_node.dir/src/main.cpp.o[0m
+[32.748s] [100%] [32m[1mLinking CXX executable hightorque_rl_inference_ros2_node[0m
+[33.907s] [100%] Built target hightorque_rl_inference_ros2_node
+[33.955s] Invoked command in '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2' returned '0': CMAKE_PREFIX_PATH=/home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2:/opt/ros/foxy:/opt/ros/noetic /usr/bin/cmake --build /home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2 -- -j8 -l8
+[34.020s] Invoking command in '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2': CMAKE_PREFIX_PATH=/home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2:/opt/ros/foxy:/opt/ros/noetic /usr/bin/cmake --install /home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2
+[34.062s] -- Install configuration: ""
+[34.063s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/lib/hightorque_rl_inference_ros2/libhightorque_rl_inference_ros2_lib.a
+[34.118s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/lib/hightorque_rl_inference_ros2/hightorque_rl_inference_ros2_node
+[34.132s] -- Set runtime path of "/home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/lib/hightorque_rl_inference_ros2/hightorque_rl_inference_ros2_node" to ""
+[34.132s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/launch
+[34.132s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/launch/hightorque_rl_inference.launch.py
+[34.133s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/config
+[34.133s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/config/config_example.yaml
+[34.133s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/policy
+[34.133s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/policy/pi_plus_amp_1110_policy_1.rknn
+[34.135s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/policy/policy0905_torknn.rknn
+[34.139s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/policy/combined_model_dwaq_v1226.rknn
+[34.140s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/policy/policy_0322_12dof_4000.rknn
+[34.142s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/include
+[34.142s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/include/rknn
+[34.142s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/include/rknn/rknn_api.h
+[34.142s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/include/hightorque_rl_inference_ros2
+[34.143s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/include/hightorque_rl_inference_ros2/hightorque_rl_inference_ros2.hpp
+[34.143s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/ament_index/resource_index/package_run_dependencies/hightorque_rl_inference_ros2
+[34.143s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/ament_index/resource_index/parent_prefix_path/hightorque_rl_inference_ros2
+[34.143s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/environment/ament_prefix_path.sh
+[34.144s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/environment/ament_prefix_path.dsv
+[34.144s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/environment/path.sh
+[34.144s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/environment/path.dsv
+[34.144s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/local_setup.bash
+[34.145s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/local_setup.sh
+[34.145s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/local_setup.zsh
+[34.145s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/local_setup.dsv
+[34.145s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/package.dsv
+[34.145s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/ament_index/resource_index/packages/hightorque_rl_inference_ros2
+[34.145s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/cmake/hightorque_rl_inference_ros2Config.cmake
+[34.146s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/cmake/hightorque_rl_inference_ros2Config-version.cmake
+[34.146s] -- Installing: /home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2/share/hightorque_rl_inference_ros2/package.xml
+[34.152s] Invoked command in '/home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2' returned '0': CMAKE_PREFIX_PATH=/home/hightorque/zy_workspace/hightorque_rl_ros2/install/hightorque_rl_inference_ros2:/opt/ros/foxy:/opt/ros/noetic /usr/bin/cmake --install /home/hightorque/zy_workspace/hightorque_rl_ros2/build/hightorque_rl_inference_ros2
